@@ -1,0 +1,31 @@
+<html>
+
+    <head>
+        <title>Cadastro do Usuário</title>
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    </head>
+
+    <body>
+        <h3>POST</h3>
+        <form action="http://localhost:8000/" method="POST">
+            <div class="grid-container">
+                <div><span>Nome: </span></div>
+                <div><input type="text" name="nome"/></div>
+                
+                <div><span>E-mail: </span></div>
+                <div><input type="text" name="email"/></div>
+                
+                <div><span>Senha: </span></div>
+                <div><input type="password" name="senha"/></div>
+                
+                <div><span>Confirmação: </span></div>
+                <div><input type="password" name="confirmacao"/></div>
+                
+                <div><button type="submit">Cadastrar</button></div>
+            
+            </div>
+        </form>
+    </body>
+
+</html>
