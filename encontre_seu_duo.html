@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>Encontre seu DUO!</title>
-    <link rel="stylesheet" type="text/css" href="layout.css">
+    <link rel="stylesheet" type="text/css" href="estilo_encontre_seu_duo.css">
+    <script src="script.js"></script>
     </style>
 </head>
 <body>
@@ -13,12 +14,15 @@
     <div class="menuDropdown">
             <button onclick="myFunction()" class="menuDropdownBotao">Informe o jogo</button>
             <div id="myDropdown" class="menuDropdownConteudo"> 
+                <input type="text" placeholder="Busca.." id="myInput" onkeyup="filterFunction()">
                  <a href="#">League of Legends</a>
                  <a href="#">Counter Strike Global Offensive</a>
                  <a href="#">Dota II</a>
                  <a href="#">Company of Heroes 2</a>
             </div>
         </div>
-    <h3>Desenvolvedores: Henrique Silva, João Victor Falcão, Pedro Henrique, Rodrigo Santos.</h3>
+    <footer>
+        <address>Desenvolvedores: Henrique Silva, João Victor Falcão, Pedro Henrique, Rodrigo Santos.</address>
+    </footer>
 </body>
 </html>
