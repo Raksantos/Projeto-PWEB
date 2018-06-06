@@ -1,26 +1,48 @@
 <html>
 
     <head>
-        <title>Counter Strike GO</title>
+        <title>CS:GO</title>
         <link rel="stylesheet" type="text/css" href="estilo_formulario.css">
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     </head>
 
     <body>
-        <h3>Counter Strike GO:</h3>
+        <h3>Counter-Strike: Global Offensive:</h3>
         <form action="http://localhost:8000/" method="POST">
             <div class="grid-container">
                 <div><span>Nick: </span></div>
                 <div><input type="text" name="nick"/></div>
                 
                 <div><span>Patente: </span></div>
-                <div><input type="text" name="elo"/></div>
+                <div>
+					<select name="patente">
+					 	<option value="prata">Prata 1 - Prata Elite Mestre</option>
+					 	<option value="ouro">Ouro 1 - Ouro 4</option>
+					 	<option value="ak">AK 1 - AK Cruzada</option>
+					 	<option value="xerife-aguia">Xerife - Águia 2</option>
+					 	<option value="sup-global">Supremo - Global</option>
+					</select><br>
+				</div>
                 
                 <div><span>Mapa favorito: </span></div>
-                <div><input type="text" name="lane"/></div>
+                <div>
+					<select name="mapa">
+					 	<option value="dust2">Dust 2</option>
+					 	<option value="inferno">Inferno</option>
+					 	<option value="mirage">Mirage</option>
+					 	<option value="cobble">Cobble</option>
+					</select><br>
+				</div>
 
                 <div><span>Turno disponível: </span></div>
-                <div><input type="text" name="lane"/></div><br>
+				<div>
+					<select name="turno">
+					 	<option value="manha">Manhã</option>
+					 	<option value="tarde">Tarde</option>
+					 	<option value="noite">Noite</option>
+					 	<option value="madrugada">Madrugada</option>
+					</select><br><br><br>
+				</div>
 
                 <div><button type="submit">Confirmar</button></div>
             

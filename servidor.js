@@ -19,7 +19,7 @@ servidor.on('request', function(req, res){
             var con = mysql.createConnection({
                 host: "localhost",
                 user: "root",
-                password: "123456",
+                password: "root",
                 database: "pweb"
             });
     
@@ -67,7 +67,7 @@ servidor.on('request', function(req, res){
             var con = mysql.createConnection({
                 host: "localhost",
                 user: "root",
-                password: "",
+                password: "root",
                 database: "pweb"
             });
     
