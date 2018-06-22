@@ -1,0 +1,39 @@
+.h1{
+    color: darkslategrey;
+    font-size: 20px;
+}
+.fonte_index{
+    color: dodgerblue;
+    font-family: cursive;
+    font-size: 30pt;
+}
+.duo_page{
+    text-align: center;
+}
+
+.icon_dev {
+    animation: girar_icone infinite 20s linear;
+    height: 80px;
+    position: relative;
+    margin-left: 80%;
+}
+
+.duo_header{
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
+}
+.duo_body {
+    background-color: midnightblue;
+}
+
+@keyframes girar_icone {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
