@@ -14,16 +14,25 @@ export default class Duo extends Component {
         return (
 
             <div className="duo_page">
-
-                <p className="fonte_index">Bem vindos</p>
-                <img src={logo} alt="Simbolo" />
-                <br/>
-                <Button tag={Link} to="/cadastro" classname="botao_cadastro">Cadastro</Button>
-                <br />
-                <img src={img_rodrigo} className="icon_dev" alt="Desenvolvedor Rodrigo" />
-                <img src={img_pedro} className="icon_dev" alt="Desenvolvedor Pedro" />
-                <img src={img_jao} className="icon_dev" alt="Desenvolvedor João" />
-                <img src={img_henrique} className="icon_dev" alt="Desenvolvedor Henrique" />
+                <div className="duo_header">
+                    <p className="fonte_index">Bem vindos</p>
+                   
+                </div>
+                <br />               
+                
+                <div className="duo_body">
+                    <img src={logo} className="duo_logo" alt="Simbolo_duo" />
+                    <br />
+                    <Link to="/cadastro" className="botao_cadastro">Cadastro</Link>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <img src={img_rodrigo} className="icon_dev" alt="Desenvolvedor Rodrigo" />
+                    <img src={img_pedro} className="icon_dev" alt="Desenvolvedor Pedro" />
+                    <img src={img_jao} className="icon_dev" alt="Desenvolvedor João" />
+                    <img src={img_henrique} className="icon_dev" alt="Desenvolvedor Henrique" />
+                </div>
 
             </div>
 
