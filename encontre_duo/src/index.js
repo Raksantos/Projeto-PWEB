@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Duo from './duo_page';
+import Rotas from './rotas';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Duo />, document.getElementById('root'));
+
+
+ReactDOM.render(<Rotas/>
+    , document.getElementById('root'));
 registerServiceWorker();
