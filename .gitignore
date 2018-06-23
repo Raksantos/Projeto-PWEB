@@ -1,3 +1,5 @@
 
 *.sqlite
 *.sqlite
+/encontre_duo/.vs
+/.vs

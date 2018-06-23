@@ -7,13 +7,14 @@
     font-family: cursive;
     font-size: 30pt;
 }
-.duo_page{
+.duo_page {
+    background-color: #222;
     text-align: center;
 }
 
 .icon_dev {
     animation: girar_icone infinite 20s linear;
-    height: 80px;
+    height: 30px;
     position: relative;
     margin-left: 80%;
 }
@@ -25,7 +26,8 @@
     color: white;
 }
 .duo_body {
-    background-color: midnightblue;
+    background-color: darkslategrey;
+
 }
 
 @keyframes girar_icone {
@@ -37,3 +39,8 @@
         transform: rotate(360deg);
     }
 }
+
+.botao_cadastro {
+    color:aqua;
+}
+    
