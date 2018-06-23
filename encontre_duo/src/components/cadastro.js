@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './cadastro.css';
 
+
 export default class Cadastro extends Component {
     render() {
         return (
