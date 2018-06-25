@@ -23,7 +23,9 @@ export default class Duo extends Component {
                 <div className="duo_body">
                     <img src={logo} className="duo_logo" alt="Simbolo_duo" />
                     <br />
-                    <Link to="/cadastro" className="botao_cadastro">Cadastro</Link>
+                    <Button color="danger" tag={Link} to="/cadastro" >Cadastro</Button>
+                    
+           
                     <br />
                     <br />
                     <br />
