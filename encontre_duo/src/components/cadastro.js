@@ -11,7 +11,7 @@ export default class Cadastro extends Component {
             <div>
                 
                 <div className="cadastro_body">
-                    <h1>Tela de cadastro</h1>
+                    <p className="text-center text-danger" >Tela de cadastro</p>
                     <Tela />
                 </div>
             </div>

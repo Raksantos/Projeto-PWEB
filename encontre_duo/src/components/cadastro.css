@@ -1,6 +1,7 @@
 .cadastro_body {
-    background-color: darkslategrey;
+    background-color: #363636;
 }
-h1 {
-    color: aqua;
+.texto-tela {
+    color: #7FFFD4;
+
 }
