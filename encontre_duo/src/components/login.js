@@ -9,8 +9,7 @@ export default class Login extends Component {
         return (
             <div>
 
-                <div className="login_body">
-                    <p className="text-center text-danger">Tela Login</p>
+                <div className="bg-dark">
                     <Tela_login />
                 </div>
             </div>

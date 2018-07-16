@@ -10,8 +10,7 @@ export default class Cadastro extends Component {
         return (
             <div>
                 
-                <div className="cadastro_body">
-                    <p className="text-center text-danger" >Tela de cadastro</p>
+                <div className="bg-dark">
                     <Tela />
                 </div>
             </div>

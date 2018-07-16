@@ -4,6 +4,7 @@ CREATE TABLE t_usuario(
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(30) NOT NULL,
     email VARCHAR(30) NOT NULL,
+	descricao VARCHAR(500) NOT NULL,
     horariodisp VARCHAR(10) NOT NULL
 );
 

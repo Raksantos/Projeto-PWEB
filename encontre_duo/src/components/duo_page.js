@@ -7,33 +7,38 @@ import img_pedro from './img/pedro_dev.png';
 import logo from './img/duo_simbolo.png';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 export default class Duo extends Component {
     render() {
         return (
 
-            <div className="duo_page bd-dark">
-                <div className="duo_header">
-                    <p className="fonte_index">Bem vindos</p>
-                   
-                </div>
-                <br />               
-                
-                <div className="duo_body bg-dark">
-                    <img src={logo} className="duo_logo" alt="Simbolo_duo" />
-                    <br />
-                    <Button color="danger" tag={Link} to="/cadastro" size="sm" className="col-3" >Cadastro</Button>           
-                    <br />
-                    <Button color="primary" tag={Link} to="/login" size="sm" className="col-3">Login</Button>           
-                    <br />
-                    <br />
-                    <br />
-                    <img src={img_rodrigo} className="icon_dev rounded-circle" alt="Desenvolvedor Rodrigo" />
-                    <img src={img_pedro} className="icon_dev rounded-circle" alt="Desenvolvedor Pedro" />
-                    <img src={img_jao} className="icon_dev rounded-circle" alt="Desenvolvedor João" />
-                    <img src={img_henrique} className="icon_dev rounded-circle" alt="Desenvolvedor Henrique" />
-                </div>
+            <div className="content-wrapper">
+                <div className="container-fluid">
+                    <div className="row align-items-center justify-content-center">
+                        <p className="fonte_index">Bem vindos</p>
+                    </div>
+                    <div className="row align-items-center justify-content-center">
+                        <div className="mb-3">
+                            <img src={logo} className="duo_logo" alt="Simbolo_duo" />
+                        </div>
+                    </div>
+                    <div className="row align-items-center justify-content-center mb-1">
+                        <Button color="danger" tag={Link} to="/cadastro" size="sm" className="col-3" >Cadastro</Button>
+                    </div>
+                    <div className="row align-items-center justify-content-center mb-3">
 
+                        <Button color="primary" tag={Link} to="/login" size="sm" className="col-3">Login</Button>
+
+                    </div>
+                    <div className="row align-items-center justify-content-center">
+                        <img src={img_rodrigo} className="icon_dev rounded-circle" alt="Desenvolvedor Rodrigo" />
+                        <img src={img_pedro} className="icon_dev rounded-circle" alt="Desenvolvedor Pedro" />
+                        <img src={img_jao} className="icon_dev rounded-circle" alt="Desenvolvedor Joao" />
+                        <img src={img_henrique} className="icon_dev rounded-circle" alt="Desenvolvedor Henrique" />
+                    </div>
+                </div>
             </div>
 
 
