@@ -2,10 +2,10 @@ CREATE DATABASE db_duo;
 
 CREATE TABLE t_usuario(
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(30) NOT NULL,
-    email VARCHAR(30) NOT NULL,
+    nome VARCHAR(40) NOT NULL,
+    email VARCHAR(40) NOT NULL,
+	senha VARCHAR(12) NOT NULL,
 	descricao VARCHAR(500) NOT NULL,
-    horariodisp VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE t_jogo(
@@ -43,6 +43,7 @@ CREATE TABLE t_usuario_jogo(
     id_funcao INT(1) UNSIGNED,
     id_rank INT(3) UNSIGNED,
 	id_mapa INT(2) UNSIGNED,
+	horario_disp VARCHAR(10),
     
     PRIMARY KEY (id_usario, id_jogo),
     FOREIGN KEY (id_usuario) REFERENCES t_usuario(id),

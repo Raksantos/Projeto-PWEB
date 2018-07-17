@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import axios from 'axios';
 
 
 export default class Cadastro extends Component {
     constructor(props) {
         super(props);
-        this.state = { email: '', senha: '', descricao: ''};
+        this.state = { nome: '', email: '', senha: '', descricao: '', redirect: false };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,38 +22,55 @@ export default class Cadastro extends Component {
     }
 
     handleSubmit(event) {
-        if(!this.checkSenha(this.state.senha))
+        if (!this.checkSenha(this.state.senha))
             alert('insira uma senha válida (6 a 12 dígitos, sem espaços)');
-        else if(!this.checkString(this.state.email))
+        else if (!this.checkString(this.state.email))
             alert('insira um email válido (no máx. 40 caracteres)');
-        else if(this.state.descricao.length > 500)
+        else if (!this.checkString(this.state.nome))
+            alert('insira um nome válido (no máx. 40 caracteres)');
+        else if (this.state.descricao.length > 500)
             alert('descrição longa demais');
-        else            
-            alert('veio do form: ' + this.state.email + " " + this.state.descricao + " " + this.state.senha);
+        else
+            this.cadastrar();
         event.preventDefault();
     }
 
-    checkString(str){
-        if(str.replace(/\s/g,"") == "")
-            return false;
-        else if(str.length > 40)
-            return false;
-        else
-            return true;          
+    cadastrar() {
+        axios.post('http://localhost:8000/cadastrar', this.state).then(res => {
+            if(res.data == 'sucesso')
+                this.setState({ redirect: true });
+            else
+                alert("ocorreu um erro inesperado");
+            console.log(res.data);
+        })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
-    checkSenha(str){
-        if(str.replace(/\s/g,"") == "")
+    checkString(str) {
+        if (str.replace(/\s/g, "") == "")
             return false;
-        else if(str.length > 12 || str.length < 6)
+        else if (str.length > 40)
+            return false;
+        else
+            return true;
+    }
+
+    checkSenha(str) {
+        if (str.replace(/\s/g, "") == "")
+            return false;
+        else if (str.length > 12 || str.length < 6)
             return false;
         else
             return true;
     }
 
     render() {
+        if (this.state.redirect === true) {
+            return <Redirect to="/login" />
+        }
         return (
-
             <div className="content-wrapper">
                 <div className="container-fluid">
                     <div className="row justify-content-center">
@@ -60,6 +78,12 @@ export default class Cadastro extends Component {
                             <div class="card-header">Cadastro de Usuário</div>
                             <div className="card-body">
                                 <Form method="POST" onSubmit={this.handleSubmit} >
+                                    <div className="form-group">
+                                        <FormGroup>
+                                            <Label for="exampleNome" className="">Nome</Label>
+                                            <Input type="text" name="nome" id="nome" placeholder="Seu nome" onChange={this.handleChange} />
+                                        </FormGroup>
+                                    </div>
                                     <div className="form-group">
                                         <FormGroup>
                                             <Label for="exampleEmail" className="">Email</Label>
@@ -77,7 +101,7 @@ export default class Cadastro extends Component {
                                             <div className="col-md-6">
                                                 <FormGroup>
                                                     <Label for="confirmPassword" className="">Confirmação de Senha</Label>
-                                                    <Input type="password" name="confirm" id="confirm" placeholder="Confirmação" onChange={this.handleChange} />
+                                                    <Input type="password" name="confirm" id="confirm" placeholder="Confirmação" onChange="" />
                                                 </FormGroup>
                                             </div>
                                         </div>
