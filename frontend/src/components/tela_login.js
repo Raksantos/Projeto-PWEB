@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios';
 
-export default class Login extends Component {
+export default class TelaLogin extends Component {
   constructor(props){
     super(props);
     this.state = { email: '', senha: '', redirect: false};
@@ -62,28 +61,28 @@ export default class Login extends Component {
         <div className="content-wrapper">
             <div className="container-fluid">
                 <div className="row justify-content-center">
-                    <div className="card w-25 mt-5">
+                    <div className="card m-5" style={{width: '25rem'}}>
                         <div class="card-header">Efetuar Login</div>
                         <div className="card-body">
-                            <Form method="POST" onSubmit={this.handleSubmit}>
-                                <FormGroup className="form-group">
-                                    <Label for="exampleEmail" className="">Email</Label>
-                                    <Input type="email" name="email" id="exampleEmail" placeholder="E-mail" onChange={this.handlChange}/>
-                                </FormGroup>
-                                <FormGroup className="form-group">
-                                    <Label for="examplePassword" className="">Senha</Label>
-                                    <Input type="password" id="examplePassword" placeholder="Senha" onChange={this.handleChange}/>
-                                </FormGroup>
+                            <form method="POST" onSubmit={this.handleSubmit}>
+                                <div className="form-group">
+                                    <label for="inputEmail" className="">Email</label>
+                                    <input className="form-control" type="email" name="email" id="inputEmail" placeholder="E-mail" onChange={this.handleChange}/>
+                                </div>
+                                <div className="form-group">
+                                    <label for="inputSenha" className="">Senha</label>
+                                    <input className="form-control" type="password" id="inputSenha" placeholder="Senha" onChange={this.handleChange}/>
+                                </div>
 
                                 <div className="form-group">
-                                    <div className="form-row justify-content-center mb-2">
-                                        <Button outline color="primary">Login</Button>
+                                    <div className="form-row justify-content-center">
+                                        <button className="btn btn-sm btn-outline-primary mt-4 mb-2" type="submit">Efetuar Login</button>
                                     </div>
                                     <div className="form-row justify-content-center">
-                                        <Button outline color="danger" size="sm" tag={Link} to="/">Pagina Inicial</Button>
+                                        <a className="btn btn-sm btn-outline-danger" href="/" >Cancelar</a>
                                     </div>
                                 </div>
-                            </Form>
+                            </form>
                             </div>
                         </div>
                     </div>

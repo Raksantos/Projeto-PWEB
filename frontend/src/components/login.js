@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './login.css';
-import { Buttom, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import Tela_login from "./tela_login";
+import TelaLogin from "./tela_login";
 
 export default class Login extends Component {
     render() {
@@ -10,7 +7,7 @@ export default class Login extends Component {
             <div>
 
                 <div className="bg-dark">
-                    <Tela_login />
+                    <TelaLogin />
                 </div>
             </div>
         );

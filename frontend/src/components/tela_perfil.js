@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default class Perfil extends Component {
+export default class TelaPerfil extends Component {
 
   render() {
     return (

@@ -5,8 +5,6 @@ import img_henrique from './img/henrique_dev.png';
 import img_jao from './img/jao_dev.png';
 import img_pedro from './img/pedro_dev.png';
 import logo from './img/duo_simbolo.png';
-import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -17,7 +15,7 @@ export default class Duo extends Component {
             <div className="content-wrapper">
                 <div className="container-fluid">
                     <div className="row align-items-center justify-content-center">
-                        <p className="fonte_index">Bem vindos</p>
+                        <h1 className="display-4 text-info">Encontre seu Duo</h1>
                     </div>
                     <div className="row align-items-center justify-content-center">
                         <div className="mb-3">
@@ -25,12 +23,10 @@ export default class Duo extends Component {
                         </div>
                     </div>
                     <div className="row align-items-center justify-content-center mb-1">
-                        <Button color="danger" tag={Link} to="/cadastro" size="sm" className="col-3" >Cadastro</Button>
+                        <a href="/cadastro" className="btn btn-danger btn-sm col-3" >Cadastro</a>
                     </div>
                     <div className="row align-items-center justify-content-center mb-3">
-
-                        <Button color="primary" tag={Link} to="/login" size="sm" className="col-3">Login</Button>
-
+                        <a href="/login" className="btn btn-primary btn-sm col-3">Login</a>
                     </div>
                     <div className="row align-items-center justify-content-center">
                         <img src={img_rodrigo} className="icon_dev rounded-circle" alt="Desenvolvedor Rodrigo" />
