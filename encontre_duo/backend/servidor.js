@@ -33,3 +33,20 @@ app.post('/cadastrar', function (req, res) {
 app.listen(8000, function () {
     console.log('Server is listening on port 8000!');
 });
+
+app.get('/logar', function (req, res){
+  var user = req.body;
+  delete user.redirect;
+  console.log(user);
+  con.query ('select ? from t_usuario ', user, function (err, result){
+    if (err){
+      res.send("erro sql");
+      throw err;
+    }
+    /*else if(){
+
+    }*/
+    console.error(result);
+    res.send("sucesso");
+  })
+});
