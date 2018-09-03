@@ -1,7 +1,9 @@
 var express = require('express');
 var app = express();
-
+var bcrypt = require('bcrypt');
 var mysql = require('mysql');
+
+const saltRounds = 10;
 
 var con = mysql.createConnection({
     host: 'localhost',
@@ -18,16 +20,24 @@ app.get('/', function (req, res) {
 
 app.post('/cadastrar', function (req, res) {
     var user = req.body;
+    const username = user['nome'];
+    const email = user['email'];
+    const senha = user['senha'];
+    const descricao = user['descricao'];
+
+
     delete user.redirect;
     console.log(user);
-    con.query('insert into t_usuario set ?', user, function (err, result) {
-        if (err){
-            res.send("erro sql");
-            throw err;
-        }
-        console.error(result);
-        res.send("sucesso");
-    })
+    bcrypt.hash(senha, saltRounds, function(err, hash){
+        con.query('insert into t_usuario (nome, email, senha, descricao) values(?, ?, ?, ?)', [username, email, hash, descricao], function (err, result) {
+            if (err){
+                res.send("erro sql");
+                throw err;
+            }
+            console.error(result);
+            res.send("sucesso");
+        })
+    });
 });
 
 app.listen(8000, function () {
