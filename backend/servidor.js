@@ -20,16 +20,11 @@ app.get('/', function (req, res) {
 
 app.post('/cadastrar', function (req, res) {
     var user = req.body;
-    const username = user['nome'];
-    const email = user['email'];
-    const senha = user['senha'];
-    const descricao = user['descricao'];
 
-
-    delete user.redirect;
-    console.log(user);
-    bcrypt.hash(senha, saltRounds, function(err, hash){
-        con.query('insert into t_usuario (nome, email, senha, descricao) values(?, ?, ?, ?)', [username, email, hash, descricao], function (err, result) {
+    bcrypt.hash(user.senha, saltRounds, function(err, hash){
+        user.senha=hash;
+        console.log(user);
+        con.query('insert into t_usuario set ?', user, function (err, result) {
             if (err){
                 res.send("erro sql");
                 throw err;
