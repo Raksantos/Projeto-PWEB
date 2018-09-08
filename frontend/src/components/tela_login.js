@@ -41,12 +41,12 @@ export default class TelaLogin extends Component {
   }
 
   checkString(str){
-    if (str.replace(/\s/g, "") == "")
+    if (str.replace(/\s/g, "") === "")
             return false;
   }
 
   checkSenha(str){
-    if (str.replace(/\s/g, "") == "")
+    if (str.replace(/\s/g, "") === "")
             return false;
     else if (str.length > 12 || str.length < 6)
             return false;
@@ -63,15 +63,15 @@ export default class TelaLogin extends Component {
             <div className="container-fluid">
                 <div className="row justify-content-center">
                     <div className="card m-5" style={{width: '25rem'}}>
-                        <div class="card-header">Efetuar Login</div>
+                        <div className="card-header">Efetuar Login</div>
                         <div className="card-body">
                             <form method="POST" onSubmit={this.handleSubmit}>
                                 <div className="form-group">
-                                    <label for="inputEmail" className="">Email</label>
+                                    <label htmlFor="inputEmail" className="">Email</label>
                                     <input className="form-control" type="email" name="email" id="inputEmail" placeholder="E-mail" onChange={this.handleChange}/>
                                 </div>
                                 <div className="form-group">
-                                    <label for="inputSenha" className="">Senha</label>
+                                    <label htmlFor="inputSenha" className="">Senha</label>
                                     <input className="form-control" type="password" id="inputSenha" placeholder="Senha" onChange={this.handleChange}/>
                                 </div>
 

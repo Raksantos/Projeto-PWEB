@@ -56,7 +56,7 @@ export default class TelaCadastro extends Component {
     }
 
     checkString(str) {
-        if (str.replace(/\s/g, "") == "")
+        if (str.replace(/\s/g, "") === "")
             return false;
         else if (str.length > 40)
             return false;
@@ -65,7 +65,7 @@ export default class TelaCadastro extends Component {
     }
 
     checkSenha(str) {
-        if (str.replace(/\s/g, "") == "")
+        if (str.replace(/\s/g, "") === "")
             return false;
         else if (str.length > 12 || str.length < 6)
             return false;
@@ -93,27 +93,27 @@ export default class TelaCadastro extends Component {
                             <div className="card-body">
                                 <form method="POST" onSubmit={this.handleSubmit} >
                                     <div className="form-group">
-                                        <label for="inputNome" className="">Nome</label>
+                                        <label htmlFor="inputNome" className="">Nome</label>
                                         <input className="form-control" type="text" name="nome" id="inputNome" placeholder="Seu nome" onChange={this.handleChange} />
                                     </div>
                                     <div className="form-group">
-                                        <label for="inputEmail" className="">Email</label>
+                                        <label htmlFor="inputEmail" className="">Email</label>
                                         <input className="form-control" type="email" name="email" id="inputEmail" placeholder="email@exemplo.com" onChange={this.handleChange} />
                                     </div>
                                     <div className="form-group">
                                         <div className="form-row">
                                             <div className="col-md-6">
-                                                <label for="examplePassword">Senha</label>
+                                                <label htmlFor="examplePassword">Senha</label>
                                                 <input className="form-control" type="password" name="senha" id="senha" placeholder="Senha" onChange={this.handleChange} />
                                             </div>
                                             <div className="col-md-6">
-                                                <label for="confirmacaoSenha">Confirmação de Senha</label>
+                                                <label htmlFor="confirmacaoSenha">Confirmação de Senha</label>
                                                 <input className="form-control" type="password" name="confirmacao" id="confirmacaoSenha" placeholder="Repita a senha" onChange={this.handleChange} />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="form-group">
-                                        <label for="inputDescricao">Descrição</label>
+                                        <label htmlFor="inputDescricao">Descrição</label>
                                         <textarea className="form-control" rows="2" name="descricao" id="inputDescricao" placeholder="Escreva um pouco sobre você" onChange={this.handleChange} />
                                     </div>
 
