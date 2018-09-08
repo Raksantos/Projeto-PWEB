@@ -42,12 +42,13 @@ export default class TelaCadastro extends Component {
         delete json.confirmacao;
         delete json.redirect;
         // envia os dados para o backend
-        axios.post('http://localhost:8000/cadastrar', json).then(res => {
-            if(res.data == 'sucesso')
+        axios.post('http://localhost:8000/users/cadastrar', json).then(res => {
+            var resp = res.data;
+            if(resp.erro === 0)
                 this.setState({ redirect: true });
             else
                 alert("ocorreu um erro inesperado");
-            console.log(res.data);
+            console.log(resp);
         })
             .catch(function (error) {
                 console.log(error);
