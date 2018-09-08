@@ -10,8 +10,10 @@ app.use(bodyParser.urlencoded({
 }));
 
 var users = require('./routes/users');
+var jogos = require('./routes/jogos');
 
 app.use('/users', users);
+app.use('/jogos', jogos);
 
 app.get('/', function (req, res) {
     res.send('Hello World!');

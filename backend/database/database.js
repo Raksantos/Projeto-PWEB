@@ -5,7 +5,7 @@ var connection = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'duo',
+    database: 'db_duo',
     port: 3306,
     debug: false,
     multipleStatements: true
