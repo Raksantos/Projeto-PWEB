@@ -78,12 +78,13 @@ users.post('/logar', function (req, res) {
                         var hash = usuario.senha;
                         bcrypt.compare(senha, hash, function (err, resp) {
                             if (resp == true) {
-                                token = jwt.sign(usuario, process.env.SECRET_KEY, {
+                                token = jwt.sign(JSON.parse(JSON.stringify(usuario)), process.env.SECRET_KEY, {
                                     expiresIn: 6000
                                 });
                                 resposta["erro"] = 0;
                                 resposta["token"] = token;
-                                resposta["dados"] = "Logado com sucesso";
+                                delete usuario.senha;
+                                resposta["dados"] = usuario;
                                 res.json(resposta);
                             } else {
                                 resposta["erro"] = 1;
