@@ -42,11 +42,21 @@ CREATE TABLE t_usuario_jogo(
 	id_rank INT(3) UNSIGNED,
 	id_mapa INT(2) UNSIGNED,
 	nickname VARCHAR (30) NOT NULL,
-	horario_disp VARCHAR(10),
+	-- horario_disp VARCHAR(10),
 	PRIMARY KEY (id_usuario, id_jogo),
 	FOREIGN KEY (id_usuario) REFERENCES t_usuario(id),
 	FOREIGN KEY (id_jogo) REFERENCES t_jogo(id),
 	FOREIGN KEY (id_funcao) REFERENCES t_funcao(id),
 	FOREIGN KEY (id_rank) REFERENCES t_rank(id),
 	FOREIGN KEY (id_mapa) REFERENCES t_mapa(id)
+);
+
+CREATE TABLE t_horario_disponivel(
+	id_usuario int(6) UNSIGNED,
+	dia int(1) UNSIGNED,
+	hora_inicio time,
+	hora_fim time,
+
+	PRIMARY KEY (id_usuario),
+	FOREIGN KEY (id_usuario) REFERENCES t_usuario(id)
 );
