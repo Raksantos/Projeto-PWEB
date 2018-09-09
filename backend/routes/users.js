@@ -7,6 +7,8 @@ var token;
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+process.env.SECRET_KEY = "keyjwt"; //pode ser qualquer valor configurado na variavel de ambiente
+
 users.use(cors());
 
 users.post('/cadastrar', function (req, res) {
@@ -53,7 +55,7 @@ users.post('/cadastrar', function (req, res) {
     });
 });
 
-users.get('/logar', function (req, res) {
+users.post('/logar', function (req, res) {
 
     var resposta = {};
     var email = req.body.email;
@@ -65,18 +67,19 @@ users.get('/logar', function (req, res) {
             resposta["dados"] = "Erro Interno do Servidor";
             res.json(resposta);
         } else {
-            connection.query('SELECT * FROM t_usuario WHERE email = ?', email, function (err, rows, fields) {
+            connection.query('SELECT * FROM t_usuario WHERE email = ?', [email], function (err, rows, fields) {
                 if (err) {
                     resposta["erro"] = 1;
                     resposta["dados"] = "Erro SQL";
                     res.json(resposta);
                 } else {
                     if (rows.length > 0) {
-                        var hash = rows[0].senha;
-                        bcrypt.compare(senha, hash, function (err, res) {
-                            if (res == true) {
-                                token = jwt.sign(rows[0], process.env.SECRET_KEY, {
-                                    expiresIn: "3h"
+                        var usuario = rows[0];
+                        var hash = usuario.senha;
+                        bcrypt.compare(senha, hash, function (err, resp) {
+                            if (resp == true) {
+                                token = jwt.sign(usuario, process.env.SECRET_KEY, {
+                                    expiresIn: 6000
                                 });
                                 resposta["erro"] = 0;
                                 resposta["token"] = token;
@@ -84,7 +87,7 @@ users.get('/logar', function (req, res) {
                                 res.json(resposta);
                             } else {
                                 resposta["erro"] = 1;
-                                resposta["dados"] = "Email e senha não compátíveis";
+                                resposta["dados"] = "Email e senha não compatíveis";
                                 res.json(resposta);
                             }
                         });
