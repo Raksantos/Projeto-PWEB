@@ -50,8 +50,8 @@ export default class TelaLogin extends Component {
             return false;
     else if (str.length > 12 || str.length < 6)
             return false;
-        else
-            return true;
+    else
+        return true;
   }
 
   render() {
