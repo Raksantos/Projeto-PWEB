@@ -61,6 +61,7 @@ jogos.get('/listarJogos', function (req, res) {
 jogos.get('/listarRanks/:gameID', function (req, res){
 
     var gameID = req.params.gameID;
+    console.log(gameID);
 
     var resposta = {
         "erro": 1,
@@ -73,8 +74,79 @@ jogos.get('/listarRanks/:gameID', function (req, res){
             resposta["dados"] = "Erro interno do servidor";
             res.json(resposta);
         } else {
-            connection.query('SELECT * FROM t_rank WHERE id_jogo = ?', gameID, function(err, rows, connection){
-                if (!err && rows>0) {
+            connection.query('SELECT * FROM t_rank WHERE id_jogo = ?', gameID, function(err, rows, fields){
+                if(err)
+                    throw err;
+                else if (rows.length > 0) {
+                    console.log(rows);
+                    resposta["erro"] = 0;
+                    resposta["dados"] = rows;
+                    res.json(resposta);
+                } else {
+                    resposta["dados"] = "Nenhum dado encontrado";
+                    res.json(resposta);
+                }
+            });
+            connection.release();
+        }
+    })
+});
+
+jogos.get('/listarFuncoes/:gameID', function (req, res){
+
+    var gameID = req.params.gameID;
+    console.log(gameID);
+
+    var resposta = {
+        "erro": 1,
+        "dados": ""
+    };
+
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro interno do servidor";
+            res.json(resposta);
+        } else {
+            connection.query('SELECT * FROM t_funcao WHERE id_jogo = ?', gameID, function(err, rows, fields){
+                if(err)
+                    throw err;
+                else if (rows.length > 0) {
+                    console.log(rows);
+                    resposta["erro"] = 0;
+                    resposta["dados"] = rows;
+                    res.json(resposta);
+                } else {
+                    resposta["dados"] = "Nenhum dado encontrado";
+                    res.json(resposta);
+                }
+            });
+            connection.release();
+        }
+    })
+});
+
+jogos.get('/listarMapas/:gameID', function (req, res){
+
+    var gameID = req.params.gameID;
+    console.log(gameID);
+
+    var resposta = {
+        "erro": 1,
+        "dados": ""
+    };
+
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro interno do servidor";
+            res.json(resposta);
+        } else {
+            connection.query('SELECT * FROM t_mapa WHERE id_jogo = ?', gameID, function(err, rows, fields){
+                if(err)
+                    throw err;
+                else if (rows.length > 0) {
+                    console.log(rows);
                     resposta["erro"] = 0;
                     resposta["dados"] = rows;
                     res.json(resposta);
