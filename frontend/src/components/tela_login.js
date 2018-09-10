@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios';
-
+import Perfil from './perfil';
 export default class TelaLogin extends Component {
   constructor(props){
     super(props);
-    this.state = { email: '', senha: '', redirect: false};
+    this.state = { email: '', senha: '', redirect: false, usuario:''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,17 +20,17 @@ export default class TelaLogin extends Component {
   }
 
   handleSubmit(event){
-    if (!this.checkSenha(this.state.senha))
-      alert('Senha incorreta!');
-    else if(!this.checkString(this.state.email))
-      alert('e-mail informado não cadastrado');
+  this.login();
   }
 
   login(){
       axios.post('http://localhost:8000/users/logar', this.state).then(res => {
         var resp = res.data;
-        if(resp.erro === 0)
-          this.setState({redirect: true});
+        
+        if(resp.erro === 0){
+          this.setState({redirect: true})
+          this.setState({usuario: resp.usuario});
+        }
         else
           alert("ocorreu um erro inesperado");
         console.log(resp);
@@ -39,24 +39,10 @@ export default class TelaLogin extends Component {
           console.log(error);
         });
   }
-
-  checkString(str){
-    if (str.replace(/\s/g, "") === "")
-            return false;
-  }
-
-  checkSenha(str){
-    if (str.replace(/\s/g, "") === "")
-            return false;
-    else if (str.length > 12 || str.length < 6)
-            return false;
-    else
-        return true;
-  }
-
   render() {
     if (this.state.redirect === true){
-      return <Redirect to="/perfil" />
+      return <Redirect to='/home'/>
+      //return <Perfil user={this.state.usuario}/>
     }
     return (
         <div className="content-wrapper">
