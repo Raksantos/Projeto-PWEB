@@ -1,15 +1,12 @@
 var express = require('express');
 var users = express.Router();
 var database = require('../database/database');
-var cors = require('cors');
 var jwt = require('jsonwebtoken');
 var token;
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 process.env.SECRET_KEY = "keyjwt"; //pode ser qualquer valor configurado na variavel de ambiente
-
-users.use(cors());
 
 users.post('/cadastrar', function (req, res) {
 
@@ -105,10 +102,10 @@ users.post('/logar', function (req, res) {
 });
 
 
-/*  Middleware para validar o token (JWT).
-    Requisições antes daqui não precisam de token;
-    Todas as requisições após essa função precisarão ter o token validado
-    para serem acessadas.    */
+//  Middleware para validar o token (JWT).
+//  Requisições antes daqui não precisam de token;
+//  Todas as requisições após essa função precisarão ter o token validado
+//  para serem acessadas.    
 users.use(function (req, res, next) {
     var token = req.body.token || req.headers['token'];
     var resposta = {};
@@ -129,9 +126,75 @@ users.use(function (req, res, next) {
     }
 });
 
-users.put('/atualizarPerfil/:userID', function (req, res) {
-    // a implementar
-});
+users.put('/atualizarPerfil', function (req, res) {
+    var resposta = {};
+    var usuario = req.body.usuario;
+    var jogo = req.body.jogo;
+    var nickname = req.body.nickname;
+    var rank = req.body.rank;
+    var funcao = req.body.funcao;
+    var mapa = req.body.mapa;
 
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro Interno do Servidor";
+            res.json(resposta);
+        } else {
+            var params = [usuario, jogo];
+            connection.query("SELECT * FROM t_usuario_jogo WHERE id_usuario=? AND id_jogo=?", params, function (err, rows) {
+                console.log(rows);
+                if (err) {
+                    resposta["erro"] = 1;
+                    resposta["dados"] = "Erro SQL (select)!";
+                    res.json(resposta);
+                } else {
+                    if (rows) {
+                        var sql = "UPDATE t_usuario_jogo SET nickname = ?, id_rank = ?, id_funcao = ?, id_mapa = ? WHERE id_usuario=? AND id_jogo=?";
+                        var args = [nickname, rank, funcao, mapa, usuario, jogo];
+                        connection.query(sql, args, function (err, result) {
+                            if (!err) {
+                                console.log(result);
+                                resposta["erro"] = 0;
+                                resposta["dados"] = "Configuração salva com sucesso!";
+                                res.json(resposta);
+                            } else {
+                                console.log(err);
+                                resposta["erro"] = 1;
+                                resposta["dados"] = "Erro SQL (update)!";
+                                res.json(resposta);
+                            }
+                        });
+                    }
+                    else {
+                        var usuarioJogo = {
+                            "id_usuario": usuario,
+                            "id_jogo": jogo,
+                            "id_funcao": funcao,
+                            "id_rank": rank,
+                            "id_mapa": mapa,
+                            "nickname": nickname
+                        }
+
+                        connection.query('INSERT INTO t_usuario_jogo SET ?', usuarioJogo, function (err, result) {
+                            if (!err) {
+                                console.log(result);
+                                resposta["erro"] = 0;
+                                resposta["dados"] = "Configuração salva com sucesso!";
+                                res.json(resposta);
+                            } else {
+                                console.log(err);
+                                resposta["erro"] = 1;
+                                resposta["dados"] = "Erro SQL (insert)!";
+                                res.json(resposta);
+                            }
+                        });
+                    }
+                }
+            });
+            connection.release();
+        }
+    });
+});
 
 module.exports = users;
