@@ -20,11 +20,12 @@ export default class TelaLogin extends Component {
   }
 
   handleSubmit(event){
-  this.login();
+    this.login();
+    event.preventDefault();
   }
 
   login(){
-      axios.post('http://localhost:8000/users/logar', this.state).then(res => {
+      axios.post('http://localhost:8000/users/logar', this.state, { crossDomain: true }).then(res => {
         var resp = res.data;
         
         if(resp.erro === 0){
@@ -58,7 +59,7 @@ export default class TelaLogin extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="inputSenha" className="">Senha</label>
-                                    <input className="form-control" type="password" id="inputSenha" placeholder="Senha" onChange={this.handleChange}/>
+                                    <input className="form-control" type="password" name="senha" id="inputSenha" placeholder="Senha" onChange={this.handleChange}/>
                                 </div>
 
                                 <div className="form-group">

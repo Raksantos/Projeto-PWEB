@@ -3,6 +3,7 @@ var users = express.Router();
 var database = require('../database/database');
 var jwt = require('jsonwebtoken');
 var token;
+var cors = require('cors');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -52,6 +53,7 @@ users.post('/cadastrar', function (req, res) {
     });
 });
 
+users.options('/logar', cors());
 users.post('/logar', function (req, res) {
 
     var resposta = {};
