@@ -4,7 +4,7 @@ import Duo from	'./components/duo_page';
 import Cadastro from './components/cadastro';
 import Login from './components/login';
 import Perfil from './components/perfil';
-
+import Home from './components/home';
 
 export default class Rotas extends Component {
     render(){
@@ -15,6 +15,7 @@ export default class Rotas extends Component {
                     <Route path="/cadastro" component={Cadastro} />
                     <Route path="/login" component={Login} />
                     <Route path="/perfil" component={Perfil} />
+                    <Route path="/home" component={Home} />
                 </Switch>
             </Router>
             );
