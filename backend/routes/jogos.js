@@ -1,10 +1,10 @@
 var express = require('express');
 var jogos = express.Router();
 var database = require('../database/database');
-var cors = require('cors');
 var jwt = require('jsonwebtoken');
 
-jogos.use(cors());
+
+
 
 /*  Middleware para validar o token (JWT).
     Requisições antes daqui não precisam de token;
@@ -160,5 +160,107 @@ jogos.get('/listarMapas/:gameID', function (req, res){
     })
 });
 
+
+jogos.get('/getRank/:rankID', function (req, res){
+
+    var rankID = req.params.rankID;
+    console.log(rankID);
+
+    var resposta = {
+        "erro": 1,
+        "dados": ""
+    };
+
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro interno do servidor";
+            res.json(resposta);
+        } else {
+            connection.query('SELECT * FROM t_rank WHERE id = ?', rankID, function(err, rows, fields){
+                if(err)
+                    throw err;
+                else if (rows.length > 0) {
+                    console.log(rows);
+                    resposta["erro"] = 0;
+                    resposta["dados"] = rows;
+                    res.json(resposta);
+                } else {
+                    resposta["dados"] = "Nenhum dado encontrado";
+                    res.json(resposta);
+                }
+            });
+            connection.release();
+        }
+    })
+});
+
+jogos.get('/getFuncao/:funcaoID', function (req, res){
+
+    var funcaoID = req.params.funcaoID;
+    console.log(funcaoID);
+
+    var resposta = {
+        "erro": 1,
+        "dados": ""
+    };
+
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro interno do servidor";
+            res.json(resposta);
+        } else {
+            connection.query('SELECT * FROM t_funcao WHERE id = ?', funcaoID, function(err, rows, fields){
+                if(err)
+                    throw err;
+                else if (rows.length > 0) {
+                    console.log(rows);
+                    resposta["erro"] = 0;
+                    resposta["dados"] = rows;
+                    res.json(resposta);
+                } else {
+                    resposta["dados"] = "Nenhum dado encontrado";
+                    res.json(resposta);
+                }
+            });
+            connection.release();
+        }
+    })
+});
+
+jogos.get('/getMapa/:mapaID', function (req, res){
+
+    var mapaID = req.params.mapaID;
+    console.log(mapaID);
+
+    var resposta = {
+        "erro": 1,
+        "dados": ""
+    };
+
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro interno do servidor";
+            res.json(resposta);
+        } else {
+            connection.query('SELECT * FROM t_mapa WHERE id = ?', mapaID, function(err, rows, fields){
+                if(err)
+                    throw err;
+                else if (rows.length > 0) {
+                    console.log(rows);
+                    resposta["erro"] = 0;
+                    resposta["dados"] = rows;
+                    res.json(resposta);
+                } else {
+                    resposta["dados"] = "Nenhum dado encontrado";
+                    res.json(resposta);
+                }
+            });
+            connection.release();
+        }
+    })
+});
 
 module.exports = jogos;
