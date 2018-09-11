@@ -151,7 +151,7 @@ users.put('/atualizarPerfil', function (req, res) {
                     resposta["dados"] = "Erro SQL (select)!";
                     res.json(resposta);
                 } else {
-                    if (rows) {
+                    if (rows.length>0) {
                         var sql = "UPDATE t_usuario_jogo SET nickname = ?, id_rank = ?, id_funcao = ?, id_mapa = ? WHERE id_usuario=? AND id_jogo=?";
                         var args = [nickname, rank, funcao, mapa, usuario, jogo];
                         connection.query(sql, args, function (err, result) {
@@ -197,6 +197,39 @@ users.put('/atualizarPerfil', function (req, res) {
             connection.release();
         }
     });
+});
+
+users.get('/perfilJogo/:userID', function (req, res) {
+    var userID = req.params.userID;
+    console.log(userID);
+
+    var resposta = {
+        "erro": 1,
+        "dados": ""
+    };
+
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro interno do servidor";
+            res.json(resposta);
+        } else {
+            connection.query('SELECT * FROM t_usuario_jogo WHERE id_usuario = ?', userID, function(err, rows, fields){
+                if(err)
+                    throw err;
+                else if (rows.length > 0) {
+                    console.log(rows);
+                    resposta["erro"] = 0;
+                    resposta["dados"] = rows;
+                    res.json(resposta);
+                } else {
+                    resposta["dados"] = "Nenhum dado encontrado";
+                    res.json(resposta);
+                }
+            });
+            connection.release();
+        }
+    })
 });
 
 module.exports = users;

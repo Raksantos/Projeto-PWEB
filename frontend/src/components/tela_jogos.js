@@ -122,7 +122,7 @@ export default class TelaJogos extends Component {
                         <input className="form-control" id="inputNick" name="nickname" type="text" minLength="2" maxLength="30" onChange={this.handleChange}/>
                         
                         <label htmlFor="selectRank" className="">Rank</label>
-                        <select className="form-control" id="selectRank" name="mapa" onChange={this.handleChange}>
+                        <select className="form-control" id="selectRank" name="rank" onChange={this.handleChange}>
                             <option defaultValue>Selecione...</option>
                             {this.state.ranks.map(rank =>
                                 <option key={rank.id} value={rank.id}>{rank.nome}</option>
