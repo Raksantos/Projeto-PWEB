@@ -58,6 +58,34 @@ jogos.get('/listarJogos', function (req, res) {
     });
 });
 
+jogos.get('/getJogo/:gameID', function (req, res) {
+    var gameID = req.params.gameID;
+    var resposta = {
+        "erro": 1,
+        "dados": ""
+    };
+
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro Interno do Servidor";
+            res.json(resposta);
+        } else {
+            connection.query('SELECT * FROM t_jogo WHERE id =?', gameID, function (err, rows, fields) {
+                if (!err) {
+                    resposta["erro"] = 0;
+                    resposta["dados"] = rows[0];
+                    res.json(resposta);
+                } else {
+                    resposta["dados"] = "Nenhum dado encontrado";
+                    res.json(resposta);
+                }
+            });
+            connection.release();
+        }
+    });
+});
+
 jogos.get('/listarRanks/:gameID', function (req, res){
 
     var gameID = req.params.gameID;
@@ -183,7 +211,7 @@ jogos.get('/getRank/:rankID', function (req, res){
                 else if (rows.length > 0) {
                     console.log(rows);
                     resposta["erro"] = 0;
-                    resposta["dados"] = rows;
+                    resposta["dados"] = rows[0];
                     res.json(resposta);
                 } else {
                     resposta["dados"] = "Nenhum dado encontrado";
@@ -217,7 +245,7 @@ jogos.get('/getFuncao/:funcaoID', function (req, res){
                 else if (rows.length > 0) {
                     console.log(rows);
                     resposta["erro"] = 0;
-                    resposta["dados"] = rows;
+                    resposta["dados"] = rows[0];
                     res.json(resposta);
                 } else {
                     resposta["dados"] = "Nenhum dado encontrado";
@@ -251,7 +279,7 @@ jogos.get('/getMapa/:mapaID', function (req, res){
                 else if (rows.length > 0) {
                     console.log(rows);
                     resposta["erro"] = 0;
-                    resposta["dados"] = rows;
+                    resposta["dados"] = rows[0];
                     res.json(resposta);
                 } else {
                     resposta["dados"] = "Nenhum dado encontrado";
