@@ -42,9 +42,6 @@ export default class TelaPerfil extends Component {
                   </div>
               </div>
           </div>
-
-
-
       );
   }
 
