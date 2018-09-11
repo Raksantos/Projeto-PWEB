@@ -2,17 +2,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import TelaJogos from "./tela_jogos";
 
 export default class TelaPerfil extends Component {
     
   render() {
-    console.log('Chegando na TELA DE PERFIL:  ' + JSON.stringify(this.props));
     var nome = this.props.usuario.nome;
     var email = this.props.usuario.email;
     var jogos = this.props.usuario.jogos;
     var rotas = this.props.usuario.rotas;
     var descricao = this.props.usuario.descricao;
-    console.log('Imprimindo na tela de perfil JOGADOR:'+ nome +' EMAIL: '+ email + ' JOGOS: ' + jogos + ' ROTAS: '+ rotas + ' DESCRIÇÃO: ' + descricao);
+    var usuario = this.props.usuario.id;
+    var token = this.props.usuario.token;
       //Essa função fica desativada até a função de logout estiver feita.
       /*if (this.state.redirect === true) {
           return <Redirect to="/login" />
@@ -39,6 +40,7 @@ export default class TelaPerfil extends Component {
                                   <div className="row">
                                       <label htmlFor="userDescription">Descrição: + {descricao}</label>
                                   </div>
+                                  <TelaJogos token={token} usuario={usuario} />
                           </div>
                       </div>
                   </div>
