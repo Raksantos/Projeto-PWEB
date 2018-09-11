@@ -7,7 +7,6 @@ export default class TelaLogin extends Component {
   constructor(props){
     super(props);
     this.state = { email: '', senha: '', redirect: false, usuario:''};
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,10 +26,13 @@ export default class TelaLogin extends Component {
   login(){
       axios.post('http://localhost:8000/users/logar', this.state, { crossDomain: true }).then(res => {
         var resp = res.data;
-        
+        var user = resp.dados;
+        user.token = resp.token;
+        console.log(resp.dados);
         if(resp.erro === 0){
+          this.setState({usuario: user});
           this.setState({redirect: true})
-          this.setState({usuario: resp.usuario});
+          console.log(this.state.usuario);
         }
         else
           alert("ocorreu um erro inesperado");
@@ -42,7 +44,7 @@ export default class TelaLogin extends Component {
   }
   render() {
     if (this.state.redirect === true){
-      return <Redirect to='/home'/>
+      return <Redirect to={{pathname:'/perfil', state:{usuario:this.state.usuario}}}/>
       //return <Perfil user={this.state.usuario}/>
     }
     return (
