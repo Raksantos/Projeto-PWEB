@@ -4,13 +4,15 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class TelaPerfil extends Component {
-
+    
   render() {
-    var nome = this.props.nome;
-    var email = this.props.email;
-    var jogos = this.props.nome;
-    var rotas = this.props.jogos;
-    var descricao = this.props.descricao;
+    console.log('Chegando na TELA DE PERFIL:  ' + JSON.stringify(this.props));
+    var nome = this.props.usuario.nome;
+    var email = this.props.usuario.email;
+    var jogos = this.props.usuario.jogos;
+    var rotas = this.props.usuario.rotas;
+    var descricao = this.props.usuario.descricao;
+    console.log('Imprimindo na tela de perfil JOGADOR:'+ nome +' EMAIL: '+ email + ' JOGOS: ' + jogos + ' ROTAS: '+ rotas + ' DESCRIÇÃO: ' + descricao);
       //Essa função fica desativada até a função de logout estiver feita.
       /*if (this.state.redirect === true) {
           return <Redirect to="/login" />
@@ -23,19 +25,19 @@ export default class TelaPerfil extends Component {
                           <div className="card-header bg-dark text-light text-center">Perfil</div>
                           <div className="card-body">
                                   <div className="row">
-                                      <label htmlFor="userNome">Nome: + {this.user} </label>
+                                      <label htmlFor="userNome">Nome: + {nome} </label>
                                   </div>
                                   <div className="row">
-                                      <label htmlFor="userEmail">Email: + {this.email} </label>
+                                      <label htmlFor="userEmail">Email: + {email} </label>
                                   </div>
                                   <div className="row">
-                                      <label htmlFor="userGames">Jogos: + {this.jogos} </label>
+                                      <label htmlFor="userGames">Jogos: + {jogos} </label>
                                   </div>
                                   <div className="row">
-                                      <label htmlFor="userRoles">Rotas: + {this.rotas} </label>
+                                      <label htmlFor="userRoles">Rotas: + {rotas} </label>
                                   </div>
                                   <div className="row">
-                                      <label htmlFor="userDescription">Descrição: + {this.descricao}</label>
+                                      <label htmlFor="userDescription">Descrição: + {descricao}</label>
                                   </div>
                           </div>
                       </div>
