@@ -17,32 +17,25 @@ export default class PerfilJogos extends Component {
     componentDidMount(){
         var user = this.state.usuario;
         var token = this.state.token;
-        axios.get('http://localhost:8000/users/perfilJogo/'+user, {headers:{'token':token}})
+        axios.get('http://localhost:8000/users/perfisJogo/'+user, {headers:{'token':token}})
             .then(res => {
                 var perfis = res.data.dados;
-                perfis.forEach(function(e) {
-                    axios.get('http://localhost:8000/jogos/getJogo/'+e['id_jogo'], {headers:{'token':token}})
-                        .then(res_jogo=>{
-                            e['jogo']=res_jogo.data.dados.nome;
-                        }).catch(err => console.log(err));
-                    axios.get('http://localhost:8000/jogos/getRank/'+e['id_rank'], {headers:{'token':token}})
-                        .then(res_rank=>{
-                            e['rank']=res_rank.data.dados.nome;
-                        }).catch(err => console.log(err));
-                    axios.get('http://localhost:8000/jogos/getFuncao/'+e['id_funcao'], {headers:{'token':token}})
-                        .then(res_func=>{
-                            e['funcao']=res_func.data.dados.nome;
-                        }).catch(err => console.log(err));
-                    axios.get('http://localhost:8000/jogos/getMapa/'+e['id_mapa'], {headers:{'token':token}})
-                        .then(res_map=>{
-                            if(res_map.data.dados!=='Nenhum dado encontrado')
-                                e['mapa']=res_map.data.dados.nome;
-                            else
-                                e['mapa']="-";
-                        }).catch(err => console.log(err));
+                perfis.forEach(e => {
+                    var jogoID = e.id_jogo;
+                    var userID = e.id_usuario;
+                    axios.get('http://localhost:8000/users/perfilJogo/'+userID+'/'+jogoID, {headers:{'token':token}})
+                        .then(res => {
+                            var resp = res.data.dados;
+                            var perfil = JSON.parse(JSON.stringify(resp).split('[').join('').split(']').join(''));
+                            perfil.id_jogo = jogoID;
+                            var aux = this.state.perfis;
+                            aux.push(perfil);
+                            this.setState({perfis: aux});
+                        }).catch(err => {
+                            console.log(err);
+                        });
                 });
-                this.setState({perfis: perfis});
-            }).catch(function (error) {
+            }).catch(error => {
                 console.log(error);
             });
     }
@@ -53,10 +46,12 @@ export default class PerfilJogos extends Component {
             <div>
                 {this.state.perfis.map(perfil =>
                     <div key={perfil.id_jogo}>
-                        Jogo: {perfil.jogo}
-                        Nick: {perfil.nickname}
-                        Rank: {perfil.rank}
-                        Funcao: {perfil.funcao}
+                        <h6>Jogo: {perfil.jogo}</h6>
+                        <h6>Nick: {perfil.nickname}</h6>
+                        <h6>Rank: {perfil.rank}</h6>
+                        <h6>Funcao: {perfil.funcao}</h6>
+                        <h6>Mapa favorito: {perfil.mapa}</h6>
+                        <hr class="mtb-2"></hr>
                     </div>
                 )}
             </div>
