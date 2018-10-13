@@ -26,36 +26,41 @@ export default class TelaJogos extends Component {
     }
 
     handleSelect(event){
-        var id = event.target.value;
-        this.setState({jogo: id});
-        axios.get('http://localhost:8000/jogos/listarRanks/'+id, {headers:{'token':this.props.token}})
-            .then(res => {
-                const ranks = res.data.dados;
-                this.setState({ranks: ranks});
-                console.log(ranks);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        axios.get('http://localhost:8000/jogos/listarFuncoes/'+id, {headers:{'token':this.props.token}})
-            .then(res => {
-                const funcoes = res.data.dados;
-                this.setState({funcoes: funcoes});
-                console.log(funcoes);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        axios.get('http://localhost:8000/jogos/listarMapas/'+id, {headers:{'token':this.props.token}})
-            .then(res => {
-                const mapas = res.data.dados;
-                if(mapas!=='Nenhum dado encontrado')
-                    this.setState({mapas: mapas});
-                else
-                this.setState({mapas: []});
-                console.log(mapas);
-            }).catch(function (error) {
-                console.log(error);
-            });
-        this.setState({selecionado: true});
+        if(event.target.value !== "Selecione..."){
+            var id = event.target.value;
+            this.setState({jogo: id});
+            axios.get('http://localhost:8000/jogos/listarRanks/'+id, {headers:{'token':this.props.token}})
+                .then(res => {
+                    const ranks = res.data.dados;
+                    this.setState({ranks: ranks});
+                    console.log(ranks);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            axios.get('http://localhost:8000/jogos/listarFuncoes/'+id, {headers:{'token':this.props.token}})
+                .then(res => {
+                    const funcoes = res.data.dados;
+                    this.setState({funcoes: funcoes});
+                    console.log(funcoes);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            axios.get('http://localhost:8000/jogos/listarMapas/'+id, {headers:{'token':this.props.token}})
+                .then(res => {
+                    const mapas = res.data.dados;
+                    if(mapas!=='Nenhum dado encontrado')
+                        this.setState({mapas: mapas});
+                    else
+                    this.setState({mapas: []});
+                    console.log(mapas);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            this.setState({selecionado: true});
+        } else{
+           window.location.reload();
+        }
+        
     }
 
     handleChange(event){
