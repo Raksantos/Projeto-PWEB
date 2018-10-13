@@ -104,7 +104,7 @@ export default class TelaJogos extends Component {
                 <div>
                     <label htmlFor="selectJogo" className="">Informe o jogo:</label>
                     <select className="form-control" id="selectJogo" onChange={this.handleSelect}>
-                        <option defaultValue>Selecione...</option>
+                        <option defaultValue hidden='true'>Selecione...</option>
                         {this.state.jogos.map(jogo =>
                             <option key={jogo.id} value={jogo.id}>{jogo.nome}</option>
                         )}
