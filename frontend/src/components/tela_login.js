@@ -44,7 +44,7 @@ export default class TelaLogin extends Component {
   }
   render() {
     if (this.state.redirect === true){
-      return <Redirect to={{pathname:'/perfil', state:{usuario:this.state.usuario}}}/>
+      return <Redirect to={{pathname:'/home', state:{usuario:this.state.usuario}}}/>
       //return <Perfil user={this.state.usuario}/>
     }
     return (
