@@ -4,6 +4,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TelaJogos from "./tela_jogos";
 import PerfilJogos from "./perfil_jogos";
+import Horario from './horario';
 
 export default class TelaPerfil extends Component {
 
@@ -44,8 +45,13 @@ export default class TelaPerfil extends Component {
                             <div className="card-body">
                                 <PerfilJogos token={token} usuario={usuario} />
                                 <TelaJogos token={token} usuario={usuario} />
+
                             </div>
-                        </div>
+                            <div className="card-header bg-dark text-light text-center">Horario Disponível</div>
+                            <div className="card-body">
+                                <Horario token={token} usuario={usuario} />
+                            </div>     
+                        </div>                      
                     </div>
                 </div>
             </div>

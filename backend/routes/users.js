@@ -128,6 +128,73 @@ users.use(function (req, res, next) {
     }
 });
 
+users.options('/atualizarHorario', cors());
+users.put('/atualizarHorario', function (req, res) {
+    var resposta = {};
+    var usuario = req.body.usuario;
+    var dia = req.body.dia;
+    var horarioInicial = req.body.horarioInicial;
+    var horarioFinal = req.body.horarioFinal;
+
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro Interno do Servidor";
+            res.json(resposta);
+        } else {
+            connection.query("SELECT * FROM t_horario_disponivel WHERE id_usuario=?", usuario, function (err, rows) {
+                console.log(rows);
+                if (err) {
+                    resposta["erro"] = 1;
+                    resposta["dados"] = "Erro SQL (select)!";
+                    res.json(resposta);
+                } else {
+                    if (rows.length > 0) {
+                        var sql = "UPDATE t_horario_disponivel set dia=?, hora_inicio=?, hora_fim=?";
+                        var args = [dia, horarioInicial, horarioFinal];
+                        connection.query(sql, args, function (err, result) {
+                            if (!err) {
+                                console.log(result);
+                                resposta["erro"] = 0;
+                                resposta["dados"] = "Configuração salva com sucesso!";
+                                res.json(resposta);
+                            } else {
+                                console.log(err);
+                                resposta["erro"] = 1;
+                                resposta["dados"] = "Erro SQL (update)!";
+                                res.json(resposta);
+                            }
+                        })
+                    } else {
+                        var horario = {
+                            'id_usuario': usuario,
+                            'dia': dia,
+                            'hora_inicio':horarioInicial,
+                            'hora_fim':horarioFinal
+                        };
+
+                        connection.query('INSERT INTO t_horario_disponivel SET ?', horario, function (err, result) {
+                            if (!err) {
+                                console.log(result);
+                                resposta["erro"] = 0;
+                                resposta["dados"] = "Configuração salva com sucesso!";
+                                res.json(resposta);
+                            } else {
+                                console.log(err);
+                                resposta["erro"] = 1;
+                                resposta["dados"] = "Erro SQL (insert)!";
+                                res.json(resposta);
+                            }
+                        });
+
+                    }
+                }
+            })
+            connection.release();
+        }
+    })
+});
+
 users.put('/atualizarPerfil', function (req, res) {
     var resposta = {};
     var usuario = req.body.usuario;
@@ -145,7 +212,7 @@ users.put('/atualizarPerfil', function (req, res) {
         } else {
             var params = [usuario, jogo];
             connection.query("SELECT * FROM t_usuario_jogo WHERE id_usuario=? AND id_jogo=?", params, function (err, rows) {
-                console.log(rows);
+                //console.log(rows);
                 if (err) {
                     resposta["erro"] = 1;
                     resposta["dados"] = "Erro SQL (select)!";
