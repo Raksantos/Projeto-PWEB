@@ -41,7 +41,7 @@ export default class PerfilJogos extends Component {
     }
 
     render() {
-        console.log(this.state.perfis);
+        //console.log(this.state.perfis);
         return(
             <div>
                 {this.state.perfis.map(perfil =>

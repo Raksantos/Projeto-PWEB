@@ -33,17 +33,17 @@ export default class TelaJogos extends Component {
                 .then(res => {
                     const ranks = res.data.dados;
                     this.setState({ranks: ranks});
-                    console.log(ranks);
+                    //console.log(ranks);
                 }).catch(function (error) {
-                    console.log(error);
+                    //console.log(error);
                 });
             axios.get('http://localhost:8000/jogos/listarFuncoes/'+id, {headers:{'token':this.props.token}})
                 .then(res => {
                     const funcoes = res.data.dados;
                     this.setState({funcoes: funcoes});
-                    console.log(funcoes);
+                    //console.log(funcoes);
                 }).catch(function (error) {
-                    console.log(error);
+                    //console.log(error);
                 });
             axios.get('http://localhost:8000/jogos/listarMapas/'+id, {headers:{'token':this.props.token}})
                 .then(res => {
@@ -52,9 +52,9 @@ export default class TelaJogos extends Component {
                         this.setState({mapas: mapas});
                     else
                     this.setState({mapas: []});
-                    console.log(mapas);
+                   // console.log(mapas);
                 }).catch(function (error) {
-                    console.log(error);
+                    //console.log(error);
                 });
             this.setState({selecionado: true});
         } else{
@@ -78,7 +78,7 @@ export default class TelaJogos extends Component {
     enviar(){
         axios.put('http://localhost:8000/users/atualizarPerfil', this.state, {headers:{'token':this.props.token}})
             .then(res => {
-                console.log(res.data);
+                //console.log(res.data);
                 window.location.reload();
             })
             .catch(err => console.log(err));
@@ -90,14 +90,14 @@ export default class TelaJogos extends Component {
             .then(res => {
                 const jogos = res.data.dados;
                 this.setState({jogos: jogos});
-                console.log(jogos);
+                //console.log(jogos);
             }).catch(function (error) {
                 console.log(error);
             });
     }
     render() {
-        console.log(this.props.token);
-        console.log(this.state);
+        //console.log(this.props.token);
+        //console.log(this.state);
         
         if(this.state.selecionado === false){
             return (
