@@ -42,7 +42,6 @@ CREATE TABLE t_usuario_jogo(
 	id_rank INT(3) UNSIGNED,
 	id_mapa INT(2) UNSIGNED,
 	nickname VARCHAR (30) NOT NULL,
-	-- horario_disp VARCHAR(10),
 	PRIMARY KEY (id_usuario, id_jogo),
 	FOREIGN KEY (id_usuario) REFERENCES t_usuario(id),
 	FOREIGN KEY (id_jogo) REFERENCES t_jogo(id),
