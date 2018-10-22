@@ -5,6 +5,7 @@ import Cadastro from './components/cadastro';
 import Login from './components/login';
 import Perfil from './components/perfil';
 import Home from './components/home';
+import Logout from './components/logout';
 
 export default class Rotas extends Component {
     render(){
@@ -16,6 +17,7 @@ export default class Rotas extends Component {
                     <Route path="/login" component={Login} />
                     <Route path="/perfil" component={Perfil} />
                     <Route path="/home" component={Home} />
+                    <Route path="/logout" component={Logout} />
                 </Switch>
             </Router>
             );
