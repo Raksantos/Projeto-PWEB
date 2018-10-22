@@ -77,9 +77,7 @@ users.post('/logar', function (req, res) {
                         var hash = usuario.senha;
                         bcrypt.compare(senha, hash, function (err, resp) {
                             if (resp == true) {
-                                token = jwt.sign(JSON.parse(JSON.stringify(usuario)), process.env.SECRET_KEY, {
-                                    expiresIn: 6000
-                                });
+                                token = jwt.sign(JSON.parse(JSON.stringify(usuario)), process.env.SECRET_KEY);
                                 resposta["erro"] = 0;
                                 resposta["token"] = token;
                                 delete usuario.senha;
@@ -197,7 +195,7 @@ users.put('/atualizarHorario', function (req, res) {
 
 users.put('/atualizarPerfil', function (req, res) {
     var resposta = {};
-    var usuario = req.body.usuario;
+    var usuario = req.body.usuario.id;
     var jogo = req.body.jogo;
     var nickname = req.body.nickname;
     var rank = req.body.rank;
@@ -212,10 +210,11 @@ users.put('/atualizarPerfil', function (req, res) {
         } else {
             var params = [usuario, jogo];
             connection.query("SELECT * FROM t_usuario_jogo WHERE id_usuario=? AND id_jogo=?", params, function (err, rows) {
-                //console.log(rows);
+                console.log(rows);
                 if (err) {
                     resposta["erro"] = 1;
                     resposta["dados"] = "Erro SQL (select)!";
+                    console.log(err);
                     res.json(resposta);
                 } else {
                     if (rows.length > 0) {
