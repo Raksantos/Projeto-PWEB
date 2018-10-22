@@ -5,13 +5,20 @@ import img_henrique from './img/henrique_dev.png';
 import img_jao from './img/jao_dev.png';
 import img_pedro from './img/pedro_dev.png';
 import logo from './img/duo_simbolo.png';
-import 'bootstrap/dist/css/bootstrap.min.css'
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export default class Duo extends Component {
+    
+    componentDidMount(){
+        const user = cookies.get('usuario');
+        if(user != undefined){
+            this.props.history.push('/home');
+        }    
+    }
+
     render() {
         return (
-
             <div className="content-wrapper">
                 <div className="container-fluid">
                     <div className="row align-items-center justify-content-center">

@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import $ from 'jquery';
-import 'bootstrap-select/dist/js/bootstrap-select.min.js';
-import 'bootstrap-select/dist/css/bootstrap-select.min.css';
-import 'bootstrap-select/dist/js/i18n/defaults-pt_BR.min.js';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export default class TelaJogos extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -17,53 +16,56 @@ export default class TelaJogos extends Component {
             mapas: [],
             selecionado: false,
             jogo: '',
-            usuario: this.props.usuario,
-            token: this.props.token
+            usuario: '',
+            nickname: '',
+            rank: '',
+            funcao: ''
         };
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
     }
 
-    handleSelect(event){
-        if(event.target.value !== "Selecione..."){
+    handleSelect(event) {
+        if (event.target.value !== "Selecione...") {
             var id = event.target.value;
-            this.setState({jogo: id});
-            axios.get('http://localhost:8000/jogos/listarRanks/'+id, {headers:{'token':this.props.token}})
+            this.setState({ jogo: id });
+            axios.get('http://localhost:8000/jogos/listarRanks/' + id, { headers: { 'token': this.state.usuario.token } })
                 .then(res => {
                     const ranks = res.data.dados;
-                    this.setState({ranks: ranks});
+                    this.setState({ ranks: ranks });
                     //console.log(ranks);
                 }).catch(function (error) {
                     //console.log(error);
                 });
-            axios.get('http://localhost:8000/jogos/listarFuncoes/'+id, {headers:{'token':this.props.token}})
+            axios.get('http://localhost:8000/jogos/listarFuncoes/' + id, { headers: { 'token': this.state.usuario.token } })
                 .then(res => {
                     const funcoes = res.data.dados;
-                    this.setState({funcoes: funcoes});
+                    this.setState({ funcoes: funcoes });
                     //console.log(funcoes);
                 }).catch(function (error) {
                     //console.log(error);
                 });
-            axios.get('http://localhost:8000/jogos/listarMapas/'+id, {headers:{'token':this.props.token}})
+            axios.get('http://localhost:8000/jogos/listarMapas/' + id, { headers: { 'token': this.state.usuario.token } })
                 .then(res => {
                     const mapas = res.data.dados;
-                    if(mapas!=='Nenhum dado encontrado')
-                        this.setState({mapas: mapas});
+                    if (mapas !== 'Nenhum dado encontrado')
+                        this.setState({ mapas: mapas });
                     else
-                    this.setState({mapas: []});
-                   // console.log(mapas);
+                        this.setState({ mapas: [] });
+                    // console.log(mapas);
                 }).catch(function (error) {
                     //console.log(error);
                 });
-            this.setState({selecionado: true});
-        } else{
-           window.location.reload();
+            this.setState({ selecionado: true });
+        } else {
+            window.location.reload();
         }
-        
+
     }
 
-    handleChange(event){
+    handleChange(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
@@ -75,31 +77,36 @@ export default class TelaJogos extends Component {
         event.preventDefault();
     }
 
-    enviar(){
-        axios.put('http://localhost:8000/users/atualizarPerfil', this.state, {headers:{'token':this.props.token}})
+    enviar() {
+        alert(this.state.funcao);
+        axios.put('http://localhost:8000/users/atualizarPerfil', this.state, { headers: { 'token': this.state.usuario.token } })
             .then(res => {
-                //console.log(res.data);
-                window.location.reload();
+                console.log(res.data);
+                //window.location.reload();
             })
-            .catch(err => console.log(err));
+            .catch(err => alert(err));
 
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8000/jogos/listarJogos', {headers:{'token':this.props.token}})
-            .then(res => {
-                const jogos = res.data.dados;
-                this.setState({jogos: jogos});
-                //console.log(jogos);
-            }).catch(function (error) {
-                console.log(error);
-            });
+        const user = cookies.get('usuario');
+        if (user != undefined) {
+            this.setState({ usuario: user });
+            axios.get('http://localhost:8000/jogos/listarJogos', { headers: { 'token': user.token } })
+                .then(res => {
+                    const jogos = res.data.dados;
+                    this.setState({ jogos: jogos });
+                    //console.log(jogos);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+        }
     }
     render() {
         //console.log(this.props.token);
         //console.log(this.state);
-        
-        if(this.state.selecionado === false){
+
+        if (this.state.selecionado === false) {
             return (
                 <div>
                     <label htmlFor="selectJogo" className="">Informe o jogo:</label>
@@ -112,7 +119,7 @@ export default class TelaJogos extends Component {
                 </div>
             );
         }
-        else if(this.state.selecionado === true){
+        else if (this.state.selecionado === true) {
             return (
                 <div>
                     <label htmlFor="selectJogo" className="">Informe o jogo:</label>
@@ -124,8 +131,8 @@ export default class TelaJogos extends Component {
                     </select>
                     <form onSubmit={this.handleSubmit}>
                         <label htmlFor="inputNick" className="">Nickname</label>
-                        <input className="form-control" id="inputNick" name="nickname" type="text" minLength="2" maxLength="30" onChange={this.handleChange}/>
-                        
+                        <input className="form-control" id="inputNick" name="nickname" type="text" minLength="2" maxLength="30" onChange={this.handleChange} />
+
                         <label htmlFor="selectRank" className="">Rank</label>
                         <select className="form-control" id="selectRank" name="rank" onChange={this.handleChange}>
                             <option defaultValue>Selecione...</option>
