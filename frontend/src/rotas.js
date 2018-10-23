@@ -6,6 +6,7 @@ import Login from './components/login';
 import Perfil from './components/perfil';
 import Home from './components/home';
 import Logout from './components/logout';
+import Jogar from './components/jogar';
 
 export default class Rotas extends Component {
     render(){
@@ -13,10 +14,11 @@ export default class Rotas extends Component {
             <Router>
                 <Switch>
                     <Route exact path="/" component={Duo} />
-                    <Route path="/cadastro" component={Cadastro} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/perfil" component={Perfil} />
-                    <Route path="/home" component={Home} />
+                    <Route exact path="/cadastro" component={Cadastro} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/perfil" component={Perfil} />
+                    <Route exact path="/home" component={Home} />
+                    <Route exact path="/jogar" component={Jogar} />
                     <Route path="/logout" component={Logout} />
                 </Switch>
             </Router>

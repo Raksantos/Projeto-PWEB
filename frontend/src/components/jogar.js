@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import logo from './img/duo_simbolo.png';
 import Cookies from 'universal-cookie';
+import TelaJogar from "./tela_jogar";
 const cookies = new Cookies();
 
-export default class TelaHome extends Component {
+export default class Jogar extends Component {
   constructor(props) {
     super(props);
     this.state = { redirect: false, usuario: '' };
@@ -35,7 +36,7 @@ export default class TelaHome extends Component {
             <a className="py-2" href="">
               <img src={logo} className="img-fluid" style={{ width: '10%' }} alt="Simbolo_duo" />
             </a>
-            <a className="py-2 d-none d-md-inline-block text-danger" href="">Inicio</a>
+            <a className="py-2 d-none d-md-inline-block text-danger" href="/">Inicio</a>
             <a className="py-2 d-none d-md-inline-block text-info" href="/perfil">Perfil</a>
             <a className="py-2 d-none d-md-inline-block text-warning" href="/jogar">Jogar</a>
             <a className="py-2 d-none d-md-inline-block text-white" href="/noticias">Notícias</a>
@@ -47,10 +48,10 @@ export default class TelaHome extends Component {
 
         <div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
           <div className="col-md-5 p-lg-5 mx-auto my-5">
-            <h1 className="display-4 font-weight-normal">Forme equipes</h1>
-            <p className="lead font-weight-normal">Trave batalhas.</p>
-            <a className="btn btn-outline-secondary text-dark">Em breve.. </a>
-          </div>
+            <h1 className="display-4 font-weight-normal">Buscar equipe</h1> <br/>  
+            <TelaJogar />    
+          </div>      
+         
           <div className="product-device shadow-sm d-none d-md-block"></div>
           <div className="product-device product-device-2 shadow-sm d-none d-md-block"></div>
         </div>
