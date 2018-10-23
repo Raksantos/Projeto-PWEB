@@ -3,9 +3,6 @@ var jogos = express.Router();
 var database = require('../database/database');
 var jwt = require('jsonwebtoken');
 
-
-
-
 /*  Middleware para validar o token (JWT).
     Requisições antes daqui não precisam de token;
     Todas as requisições após essa função precisarão ter o token validado

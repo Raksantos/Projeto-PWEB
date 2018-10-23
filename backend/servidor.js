@@ -13,9 +13,11 @@ app.use(bodyParser.urlencoded({
 
 var users = require('./routes/users');
 var jogos = require('./routes/jogos');
+var busca = require('./routes/busca');
 
 app.use('/users', users);
 app.use('/jogos', jogos);
+app.use('/busca', busca);
 
 app.get('/', function (req, res) {
     res.send('Hello World!');
