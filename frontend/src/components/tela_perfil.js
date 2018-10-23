@@ -6,8 +6,6 @@ import TelaJogos from "./tela_jogos";
 import PerfilJogos from "./perfil_jogos";
 import Horario from './horario';
 import Cookies from 'universal-cookie';
-import Navbar from "./navbar";
-import Footer from "./footer";
 const cookies = new Cookies();
 
 export default class TelaPerfil extends Component {
@@ -34,8 +32,7 @@ export default class TelaPerfil extends Component {
         }*/
         return (
             <div className="content-wrapper">
-                <div className="container-fluid">
-                <Navbar />
+                <div className="container-fluid">    
                     <div className="row justify-content-center">
                         <div className="card m-5 border-light" style={{ width: '50rem' }}>
                             <div className="card-header bg-dark text-light text-center">Perfil Pessoal</div>
@@ -55,26 +52,21 @@ export default class TelaPerfil extends Component {
                     <div className="row justify-content-center">
                         <div className="card mb-5 border-light" style={{ width: '50rem' }}>
                             <div className="card-header bg-dark text-light text-center">Perfil Jogos</div>
-                            <div className="card-body">
-                
+                            <div className="card-body">                
                                 <PerfilJogos />
                                 <TelaJogos />
 
                             </div>
-                            <div className="card-header bg-dark text-light text-center">Horario Disponível
-                            
+                            <div className="card-header bg-dark text-light text-center">Horario Disponível                           
                             </div>
                             <div className="card-body">
                                 <Horario /> 
                                 <div className="row justify-content-center">
                                     <a href="/" className="btn mt-10 col-2 btn-block btn-outline-danger">Página Inicial</a>
                              </div>                  
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                    <Footer/>
+                            </div>                            
+                        </div>                        
+                    </div>     
                 </div>
             </div>
         );
