@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import logo from './img/duo_simbolo.png';
 import Cookies from 'universal-cookie';
+import Navbar from "./navbar";
+
 const cookies = new Cookies();
 
 export default class TelaHome extends Component {
@@ -30,20 +32,7 @@ export default class TelaHome extends Component {
 
     return (
       <div className="content-wrapper">
-        <nav className="site-header sticky-top py-1 bg-dark">
-          <div className="container d-flex flex-column flex-md-row justify-content-between">
-            <a className="py-2" href="">
-              <img src={logo} className="img-fluid" style={{ width: '10%' }} alt="Simbolo_duo" />
-            </a>
-            <a className="py-2 d-none d-md-inline-block text-danger" href="">Inicio</a>
-            <a className="py-2 d-none d-md-inline-block text-info" href="/perfil">Perfil</a>
-            <a className="py-2 d-none d-md-inline-block text-warning" href="/jogar">Jogar</a>
-            <a className="py-2 d-none d-md-inline-block text-white" href="/noticias">Notícias</a>
-            <a className="py-2 d-none d-md-inline-block text-gray" href="/suporte">Suporte</a>
-            <a className="py-2 d-none d-md-inline-block text-success" href="/sobre">Sobre</a>
-            <a className="py-2 d-none d-md-inline-block" href="/logout">Sair</a>
-          </div>
-        </nav>
+        <Navbar />
 
         <div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
           <div className="col-md-5 p-lg-5 mx-auto my-5">
