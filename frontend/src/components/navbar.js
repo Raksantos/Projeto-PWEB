@@ -26,7 +26,7 @@ export default class Navbar extends React.Component {
     render() {
         if (!this.state.redirect) {
             return (
-                <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
             <a className="navbar-brand" href="">
               <img src={logo} className="img-fluid" style={{ width: '2rem', height: '3rem' }}  alt="Simbolo_duo" />

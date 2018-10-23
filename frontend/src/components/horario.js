@@ -39,7 +39,6 @@ export default class Horario extends Component {
     }
 
     enviar() {
-        alert("entrou no enviar")
         axios.put('http://localhost:8000/users/atualizarHorario', this.state, { headers: { 'token': this.props.token } })
             .then(res => {
                 console.log(res.data);
@@ -82,4 +81,3 @@ export default class Horario extends Component {
 
     }
 }
-

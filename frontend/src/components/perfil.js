@@ -6,7 +6,7 @@ import Footer from "./footer";
 const cookies = new Cookies();
 
 export default class Perfil extends Component {
-  
+
   componentDidMount() {
     const user = cookies.get('usuario');
     if(user == undefined)
@@ -14,10 +14,11 @@ export default class Perfil extends Component {
   }
 
   render(){
-    return(      
+    return(
       <div>
-        <Navbar />
+
         <div className="bg-dark">
+          
           <TelaPerfil />
         </div>
         <Footer/>

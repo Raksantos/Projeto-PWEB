@@ -78,11 +78,10 @@ export default class TelaJogos extends Component {
     }
 
     enviar() {
-        alert(this.state.funcao);
         axios.put('http://localhost:8000/users/atualizarPerfil', this.state, { headers: { 'token': this.state.usuario.token } })
             .then(res => {
                 console.log(res.data);
-                //window.location.reload();
+                window.location.reload();
             })
             .catch(err => alert(err));
 

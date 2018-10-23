@@ -31,10 +31,9 @@ busca.use(function (req, res, next) {
 busca.put('/buscarDuos', function (req, res) {
     var resposta = {};
     var jogo = parseInt(req.body.jogo);
-    var nickname = req.body.nickname;
     var rank = parseInt(req.body.rank);
     var funcao = parseInt(req.body.funcao);
-    const params = [jogo, funcao, rank, nickname];
+    const params = [jogo, funcao, rank];
     console.log(params);
 
     database.connection.getConnection(function (err, connection) {
@@ -43,7 +42,7 @@ busca.put('/buscarDuos', function (req, res) {
             resposta["dados"] = "Erro interno do servidor";
             res.json(resposta);
         } else {
-            var sql = "SELECT * FROM t_usuario_jogo WHERE id_jogo=? AND id_funcao=? AND id_rank=? AND nickname=?";
+            var sql = "SELECT * FROM t_usuario_jogo WHERE id_jogo=? AND id_funcao=? AND id_rank=?";
             connection.query(sql, params, function (err, rows, result) {
                 console.log(rows);
                 if (err)
