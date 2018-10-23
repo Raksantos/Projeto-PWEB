@@ -9,7 +9,7 @@ export default class Navbar extends React.Component {
         this.state = { redirect: false, usuario: '' };
         this.handleRedirect = this.handleRedirect.bind(this);
       }
-    
+
       componentDidMount() {
         const user = cookies.get('usuario');
         if (user != undefined)
@@ -17,7 +17,7 @@ export default class Navbar extends React.Component {
         else
           this.setState({ redirect: true });
       }
-    
+
       handleRedirect(event) {
         event.preventDefault();
         this.setState({ redirect: true })
@@ -26,23 +26,24 @@ export default class Navbar extends React.Component {
     render() {
         if (!this.state.redirect) {
             return (
-                <nav className="site-header sticky-top py-1 bg-dark">
-          <div className="container d-flex flex-column flex-md-row justify-content-between">
-            <a className="py-2" href="">
-              <img src={logo} className="img-fluid" style={{ width: '10%' }} alt="Simbolo_duo" />
+                <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+
+            <a className="navbar-brand" href="">
+              <img src={logo} className="img-fluid" style={{ width: '2rem', height: '3rem' }}  alt="Simbolo_duo" />
             </a>
-            <a className="py-2 d-none d-md-inline-block text-danger" href="/">Inicio</a>
-            <a className="py-2 d-none d-md-inline-block text-info" href="/perfil">Perfil</a>
-            <a className="py-2 d-none d-md-inline-block text-warning" href="/jogar">Jogar</a>
-            <a className="py-2 d-none d-md-inline-block text-white" href="/noticias">Notícias</a>
-            <a className="py-2 d-none d-md-inline-block text-gray" href="/suporte">Suporte</a>
-            <a className="py-2 d-none d-md-inline-block text-success" href="/sobre">Sobre</a>
-            <a className="py-2 d-none d-md-inline-block" href="/logout">Sair</a>
-          </div>
+             <div className="btn collapse navbar-collapse" id="navbarResponsive">
+             <ul className="navbar-nav ml-auto">
+               <li className="nav-item"><a className="nav-link py-2 d-none d-md-inline-block text-danger" href="/">Inicio</a></li>
+               <li className="nav-item"><a className="nav-link py-2 d-none d-md-inline-block text-info" href="/perfil">Perfil</a></li>
+               <li className="nav-item"><a className="nav-link py-2 d-none d-md-inline-block text-warning" href="/jogar">Jogar</a></li>
+               <li className="nav-item"><a className="nav-link py-2 d-none d-md-inline-block text-success" href="/sobre">Sobre</a></li>
+               <li className="nav-item"><a className="nav-link py-2 d-none d-md-inline-block" href="/logout">Sair</a></li>
+              </ul>
+            </div>
+
         </nav>
             )
-        } 
+        }
 
     }
 }
-
