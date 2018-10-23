@@ -15,11 +15,9 @@ export default class TelaHome extends Component {
   componentDidMount() {
     const user = cookies.get('usuario');
     if (user != undefined){
-      alert('aaaaaa');
       this.setState({ usuario: user });
     }
     else{
-      alert('bbbbb');
       this.setState({ redirect: true });
     }
   }

@@ -28,9 +28,41 @@ busca.use(function (req, res, next) {
     }
 });
 
-busca.get('/buscaAutomatica', function(req,res){
+busca.put('/buscarDuos', function (req, res) {
     var resposta = {};
-    
+    var jogo = parseInt(req.body.jogo);
+    var nickname = req.body.nickname;
+    var rank = parseInt(req.body.rank);
+    var funcao = parseInt(req.body.funcao);
+    const params = [jogo, funcao, rank, nickname];
+    console.log(params);
+
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro interno do servidor";
+            res.json(resposta);
+        } else {
+            var sql = "SELECT * FROM t_usuario_jogo WHERE id_jogo=? AND id_funcao=? AND id_rank=? AND nickname=?";
+            connection.query(sql, params, function (err, rows, result) {
+                console.log(rows);
+                if (err)
+                    throw err;
+                else if (rows.length > 0) {
+                    resposta["erro"] = 0;
+                    resposta["dados"] = rows;
+                    res.json(resposta);
+                }
+                else {
+                    resposta["erro"] = 1;
+                    resposta["dados"] = "Nenhum dado encontrado!";
+                    res.json(resposta);
+                }
+            });
+            connection.release();
+        }
+    });
+
 });
 
 module.exports = busca;
