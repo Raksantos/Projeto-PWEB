@@ -135,6 +135,7 @@ users.put('/atualizarHorario', function (req, res) {
     var horarioFinal = req.body.horarioFinal;
 
     database.connection.getConnection(function (err, connection) {
+        console.log("conexão com sql horariod disp")
         if (err) {
             resposta["erro"] = 1;
             resposta["dados"] = "Erro Interno do Servidor";
@@ -148,8 +149,9 @@ users.put('/atualizarHorario', function (req, res) {
                     res.json(resposta);
                 } else {
                     if (rows.length > 0) {
-                        var sql = "UPDATE t_horario_disponivel set dia=?, hora_inicio=?, hora_fim=?";
-                        var args = [dia, horarioInicial, horarioFinal];
+                        console.log("usuario já cadastrado")
+                        var sql = "UPDATE t_horario_disponivel set dia=?, hora_inicio=?, hora_fim=? WHERE id_usuario=?";
+                        var args = [dia, horarioInicial, horarioFinal, usuario];
                         connection.query(sql, args, function (err, result) {
                             if (!err) {
                                 console.log(result);
@@ -164,6 +166,7 @@ users.put('/atualizarHorario', function (req, res) {
                             }
                         })
                     } else {
+                        console.log("cadastrando usuario")
                         var horario = {
                             'id_usuario': usuario,
                             'dia': dia,

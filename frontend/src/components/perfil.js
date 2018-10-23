@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TelaPerfil from "./tela_perfil";
 import Cookies from 'universal-cookie';
+import Navbar from "./navbar";
+import Footer from "./footer";
 const cookies = new Cookies();
 
 export default class Perfil extends Component {
@@ -12,11 +14,13 @@ export default class Perfil extends Component {
   }
 
   render(){
-    return(
+    return(      
       <div>
+        <Navbar />
         <div className="bg-dark">
           <TelaPerfil />
         </div>
+        <Footer/>
       </div>
     );
   }

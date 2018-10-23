@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export default class Horario extends Component {
     constructor(props) {
@@ -11,12 +12,17 @@ export default class Horario extends Component {
             dia: '',
             horarioInicial: '',
             horarioFinal: '',
-            usuario: this.props.usuario,
-            token: this.props.token
+            usuario: '',
+            token: ''
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+    }
+    componentDidMount(){
+        const user = cookies.get('usuario');
+        this.setState({usuario: user.id})
+        this.setState({token: user.token})
     }
 
     handleChange(event) {
@@ -33,6 +39,7 @@ export default class Horario extends Component {
     }
 
     enviar() {
+        alert("entrou no enviar")
         axios.put('http://localhost:8000/users/atualizarHorario', this.state, { headers: { 'token': this.props.token } })
             .then(res => {
                 console.log(res.data);
@@ -67,7 +74,7 @@ export default class Horario extends Component {
                         <input className="form-control" type="time" name="horarioFinal" placeholder="Horario Final" onChange={this.handleChange} />
                     </div>
                     <div className="row justify-content-center">
-                        <button type="submit" className="btn mt-3 btn-block btn-outline-primary">Salvar</button>
+                        <button type="submit" className="btn mt-3 col-2 btn-block btn-outline-primary">Salvar</button>
                     </div>
                 </div>
             </form>
