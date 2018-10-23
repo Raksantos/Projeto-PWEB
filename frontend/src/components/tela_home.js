@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import logo from './img/duo_simbolo.png';
 import Cookies from 'universal-cookie';
 import Navbar from "./navbar";
-
+import Footer from "./footer";
 const cookies = new Cookies();
 
 export default class TelaHome extends Component {
@@ -43,28 +43,8 @@ export default class TelaHome extends Component {
           <div className="product-device shadow-sm d-none d-md-block"></div>
           <div className="product-device product-device-2 shadow-sm d-none d-md-block"></div>
         </div>
-        <footer className="container py-5">
-          <div className="row">
-            <div className="col-12 col-md">
-              <img src={logo} className="img-fluid" style={{ width: '10%' }} alt="Simbolo_duo" />
-              <small className="d-block mb-3 text-muted">&copy; 2018</small>
-            </div>
-            <div className="col-6 col-md">
-              <h5>Conteúdo</h5>
-              <ul className="list-unstyled text-small">
-                <li><a className="text-muted" href="aleatorio">Pessoas aleatórias</a></li>
-                <li><a className="text-muted" href="top100">TOP 100</a></li>
-                <li><a className="text-muted" href="jogadas">JOGADAS INÉDITAS</a></li>
-              </ul>
-            </div>
-            <div className="col-6 col-md">
-              <h5>Equipe</h5>
-              <ul className="list-unstyled text-small">
-                <li><a className="text-muted" target="_blank" rel="noopener" href="https://github.com/Raksantos/Projeto-PWEB">Conheça os programadores</a></li>
-              </ul>
-            </div>
-          </div>
-        </footer>
+
+       <Footer />
       </div>
 
 

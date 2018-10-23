@@ -74,7 +74,7 @@ export default class Horario extends Component {
                         <input className="form-control" type="time" name="horarioFinal" placeholder="Horario Final" onChange={this.handleChange} />
                     </div>
                     <div className="row justify-content-center">
-                        <button type="submit" className="btn mt-3 btn-block btn-outline-primary">Salvar</button>
+                        <button type="submit" className="btn mt-3 col-2 btn-block btn-outline-primary">Salvar</button>
                     </div>
                 </div>
             </form>
