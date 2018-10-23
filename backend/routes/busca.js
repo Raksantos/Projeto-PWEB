@@ -32,3 +32,5 @@ busca.get('/buscaAutomatica', function(req,res){
     var resposta = {};
     
 });
+
+module.exports = busca;
