@@ -13,7 +13,7 @@ export default class TelaLogin extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const user = cookies.get('usuario');
         if(user != undefined){
             this.setState({redirect: true});
@@ -38,11 +38,9 @@ export default class TelaLogin extends Component {
             if (resp.erro === 0) {
                 var user = resp.dados;
                 user.token = resp.token;
-                this.setState({ usuario: user });
-                this.setState({ redirect: true });
                 cookies.set('usuario', user, { path: '/' });
+                this.setState({ usuario: user, redirect: true });
                 console.log(this.state.usuario);
-               
             }
             else
                 alert(resp.dados);

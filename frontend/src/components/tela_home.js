@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import logo from './img/duo_simbolo.png';
 import Cookies from 'universal-cookie';
 import Navbar from "./navbar";
@@ -10,21 +10,20 @@ export default class TelaHome extends Component {
   constructor(props) {
     super(props);
     this.state = { redirect: false, usuario: '' };
-    this.handleRedirect = this.handleRedirect.bind(this);
   }
 
   componentDidMount() {
     const user = cookies.get('usuario');
-    if (user != undefined)
+    if (user != undefined){
+      alert('aaaaaa');
       this.setState({ usuario: user });
-    else
+    }
+    else{
+      alert('bbbbb');
       this.setState({ redirect: true });
+    }
   }
 
-  handleRedirect(event) {
-    event.preventDefault();
-    this.setState({ redirect: true })
-  }
   render() {
     if (this.state.redirect === true) {
       return <Redirect to={{ pathname: '/' }} />

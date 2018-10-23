@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import './duo_page.css';
 import img_rodrigo from './img/rodrigo_dev.png';
 import img_henrique from './img/henrique_dev.png';
@@ -9,15 +10,22 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 export default class Duo extends Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = { redirect: false };
+    }
+
     componentDidMount(){
         const user = cookies.get('usuario');
         if(user != undefined){
-            this.props.history.push('/home');
-        }    
+            this.setState({redirect: true});
+        }
     }
 
     render() {
+        if (this.state.redirect === true) {
+            return <Redirect to={{ pathname: '/home' }} />
+        }
         return (
             <div className="content-wrapper">
                 <div className="container-fluid">
