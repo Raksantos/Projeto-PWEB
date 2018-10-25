@@ -1,0 +1,20 @@
+
+.icon_dev {
+    animation: girar_icone infinite 20s linear;
+    height: 30px;
+    position: relative;
+
+}
+.duo_logo {
+    height: 10%;
+}
+
+@keyframes girar_icone {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

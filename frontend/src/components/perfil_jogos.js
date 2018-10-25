@@ -12,7 +12,6 @@ export default class PerfilJogos extends Component {
         this.state = {
             perfis: [],
             usuario: this.props.usuario,
-            token: this.props.token
         };
     }
 
@@ -49,11 +48,17 @@ export default class PerfilJogos extends Component {
             <div>
                 {this.state.perfis.map(perfil =>
                     <div key={perfil.id_jogo}>
-                        <h6>Jogo: {perfil.jogo}</h6>
-                        <h6>Nick: {perfil.nickname}</h6>
-                        <h6>Rank: {perfil.rank}</h6>
-                        <h6>Funcao: {perfil.funcao}</h6>
-                        <h6>Mapa favorito: {perfil.mapa}</h6>
+                        <h5 className="text-info">Jogo: {perfil.jogo}</h5>
+                        <div className="row">
+                            <div className="col-md-auto">
+                                <h6>Nick: {perfil.nickname}</h6>
+                                <h6>Rank: {perfil.rank}</h6>
+                            </div>
+                            <div className="col-md-auto">
+                                <h6>Funcao: {perfil.funcao}</h6>
+                                <h6>Mapa favorito: {perfil.mapa}</h6>
+                            </div>
+                        </div>
                         <hr className="mtb-2"></hr>
                     </div>
                 )}

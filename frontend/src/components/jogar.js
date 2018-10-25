@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import logo from './img/duo_simbolo.png';
 import Cookies from 'universal-cookie';
-import TelaJogar from "./tela_jogar";
+import TelaJogar from "./buscarDuo";
 import Navbar from "./navbar";
 import Footer from "./footer";
 const cookies = new Cookies();

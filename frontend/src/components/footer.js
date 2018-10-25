@@ -4,29 +4,29 @@ import logo from './img/duo_simbolo.png';
 const cookies = new Cookies();
 
 export default class Footer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { redirect: false, usuario: '' };
-        this.handleRedirect = this.handleRedirect.bind(this);
-      }
-    
-      componentDidMount() {
-        const user = cookies.get('usuario');
-        if (user != undefined)
-          this.setState({ usuario: user });
-        else
-          this.setState({ redirect: true });
-      }
-    
-      handleRedirect(event) {
-        event.preventDefault();
-        this.setState({ redirect: true })
-      }
+  constructor(props) {
+    super(props);
+    this.state = { redirect: false, usuario: '' };
+    this.handleRedirect = this.handleRedirect.bind(this);
+  }
 
-    render() {
-        if (!this.state.redirect) {
-            return (
-                <footer className="container py-5">
+  componentDidMount() {
+    const user = cookies.get('usuario');
+    if (user != undefined)
+      this.setState({ usuario: user });
+    //else
+    //this.setState({ redirect: true });
+  }
+
+  handleRedirect(event) {
+    event.preventDefault();
+    this.setState({ redirect: true })
+  }
+
+  render() {
+    if (!this.state.redirect) {
+      return (
+        <footer className="container py-5">
           <div className="row">
             <div className="col-12 col-md">
               <img src={logo} className="img-fluid" style={{ width: '10%' }} alt="Simbolo_duo" />
@@ -37,7 +37,14 @@ export default class Footer extends React.Component {
               <ul className="list-unstyled text-small">
                 <li><a className="text-muted" href="aleatorio">Pessoas aleatórias</a></li>
                 <li><a className="text-muted" href="top100">TOP 100</a></li>
+              </ul>
+
+            </div>
+            <div className="col-6 col-md">
+              <ul className="list-unstyled text-small">
+                <br></br>
                 <li><a className="text-muted" href="jogadas">JOGADAS INÉDITAS</a></li>
+                <li><a className="text-muted" href="/sobre">Sobre</a></li>
               </ul>
             </div>
             <div className="col-6 col-md">
@@ -48,9 +55,9 @@ export default class Footer extends React.Component {
             </div>
           </div>
         </footer>
-            )
-        } 
-
+      )
     }
+
+  }
 }
 
