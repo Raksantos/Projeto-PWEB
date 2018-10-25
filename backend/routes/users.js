@@ -170,8 +170,8 @@ users.put('/atualizarHorario', function (req, res) {
                         var horario = {
                             'id_usuario': usuario,
                             'dia': dia,
-                            'hora_inicio':horarioInicial,
-                            'hora_fim':horarioFinal
+                            'hora_inicio': horarioInicial,
+                            'hora_fim': horarioFinal
                         };
 
                         connection.query('INSERT INTO t_horario_disponivel SET ?', horario, function (err, result) {
@@ -267,6 +267,38 @@ users.put('/atualizarPerfil', function (req, res) {
         }
     });
 });
+
+users.get('/listarHorario/:userID', function (req, res) {
+    var userID = req.params.userID;
+
+    var resposta = {
+        "erro": 1,
+        "dados": ""
+    };
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta['erro'] = 1;
+            resposta['dados'] = "Erro Interno do Servidor";
+            res.json(resposta);
+        } else {
+            connection.query('SELECT * FROM t_horario_disponivel WHERE id_usuario=?', userID, function (err, rows, fields) {
+                if (err) {
+                    throw (err);
+                } else if (rows.length > 0){
+                    console.log(rows)
+                    resposta['erro']=0;
+                    resposta['dados']=rows;
+                    res.json(resposta);
+
+                } else {
+                    resposta['erro']=1;
+                    resposta['dados']="Nenhum dado encontrado";
+                    res.json(resposta);
+                }
+            })
+        }
+    })
+})
 
 users.get('/perfisJogo/:userID', function (req, res) {
     var userID = req.params.userID;
