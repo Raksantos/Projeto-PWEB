@@ -28,7 +28,7 @@ busca.use(function (req, res, next) {
     }
 });
 
-busca.put('/buscarDuos', function (req, res) {
+busca.put('/buscaManual', function (req, res) {
     var resposta = {};
     var jogo = parseInt(req.body.jogo);
     var rank = parseInt(req.body.rank);
@@ -63,5 +63,54 @@ busca.put('/buscarDuos', function (req, res) {
     });
 
 });
+
+
+busca.get('/buscaAutomatica/:userID', function (req, res) {
+    var resposta = {};
+    var userID = req.params.userID;
+    const params = [jogo, funcao, rank];
+    console.log(params);
+
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro interno do servidor";
+            res.json(resposta);
+        } else {
+            connecton.query("SELECT dia, hora_inicio, hora_fim, id_usuario FROM t_horario_disponivel WHERE id_usuario=?", userID, function (err, rows, fields) {
+                if (err) {
+                    throw err;
+                } else if (rows.length > 0) {
+                    params = [rows[0]]
+                    var sql = "SELECT * FROM t_usuario_jogo WHERE dia=? AND hora_inicio >= ? AND hora_fim <=? AND id_usuario !=?";
+                    connection.query(sql, params, function (err, rows, result) {
+                        console.log(rows);
+                        if (err)
+                            throw err;
+                        else if (rows.length > 0) {
+                            resposta["erro"] = 0;
+                            resposta["dados"] = rows;
+                            res.json(resposta);
+                        }
+                        else {
+                            resposta["erro"] = 1;
+                            resposta["dados"] = "Nenhum dado encontrado!";
+                            res.json(resposta);
+                        }
+
+                    })
+                } else {
+                    resposta["erro"] = 1;
+                    resposta["dados"] = "Nenhum dado encontrado!";
+                    res.json(resposta);
+                }
+
+                connection.release();
+            });
+        }
+    });
+});
+
+
 
 module.exports = busca;
