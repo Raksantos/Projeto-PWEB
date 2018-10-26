@@ -1,3 +1,8 @@
+import './cadastroLogin.css';
+import img_rodrigo from './img/rodrigo_dev.png';
+import img_henrique from './img/henrique_dev.png';
+import img_jao from './img/jao_dev.png';
+import img_pedro from './img/pedro_dev.png';
 import React from 'react';
 import Cookies from 'universal-cookie';
 import logo from './img/duo_simbolo.png';
@@ -51,6 +56,12 @@ export default class Footer extends React.Component {
               <h5>Equipe</h5>
               <ul className="list-unstyled text-small">
                 <li><a className="text-muted" target="_blank" rel="noopener" href="https://github.com/Raksantos/Projeto-PWEB">Conheça os programadores</a></li>
+                <div className="row">
+                  <div className="col-md-auto"><img src={img_rodrigo} className="icon_dev rounded-circle" alt="Desenvolvedor Rodrigo" /></div>
+                  <div className="col-md-auto"><img src={img_pedro} className="icon_dev rounded-circle" alt="Desenvolvedor Pedro" /></div>
+                  <div className="col-md-auto"><img src={img_jao} className="icon_dev rounded-circle" alt="Desenvolvedor Joao" /></div>
+                  <div className="col-md-auto"><img src={img_henrique} className="icon_dev rounded-circle" alt="Desenvolvedor Henrique" /></div>
+                </div>
               </ul>
             </div>
           </div>

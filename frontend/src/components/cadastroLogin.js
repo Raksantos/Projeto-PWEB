@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import './cadastroLogin.css';
-import img_rodrigo from './img/rodrigo_dev.png';
-import img_henrique from './img/henrique_dev.png';
-import img_jao from './img/jao_dev.png';
-import img_pedro from './img/pedro_dev.png';
 import logo from './img/duo_simbolo.png';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
@@ -42,12 +37,6 @@ export default class Duo extends Component {
                     </div>
                     <div className="row align-items-center justify-content-center mb-3">
                         <a href="/login" className="btn btn-primary btn-sm col-3">Login</a>
-                    </div>
-                    <div className="row align-items-center justify-content-center">
-                        <img src={img_rodrigo} className="icon_dev rounded-circle" alt="Desenvolvedor Rodrigo" />
-                        <img src={img_pedro} className="icon_dev rounded-circle" alt="Desenvolvedor Pedro" />
-                        <img src={img_jao} className="icon_dev rounded-circle" alt="Desenvolvedor Joao" />
-                        <img src={img_henrique} className="icon_dev rounded-circle" alt="Desenvolvedor Henrique" />
                     </div>
                 </div>
             </div>

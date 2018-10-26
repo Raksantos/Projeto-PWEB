@@ -9,24 +9,15 @@ const cookies = new Cookies();
 export default class TelaHome extends Component {
   constructor(props) {
     super(props);
-    this.state = { redirect: false, usuario: '' };
   }
 
   componentDidMount() {
     const user = cookies.get('usuario');
-    if (user != undefined){
-      this.setState({ usuario: user });
-    }
-    else{
-      this.setState({ redirect: true });
-    }
-  }
+    if (user == undefined)
+        this.props.history.push('/');        
+}
 
   render() {
-    if (this.state.redirect === true) {
-      //return <Redirect to={{ pathname: '/' }} />
-    }
-
     return (
       <div>
       <Navbar />
