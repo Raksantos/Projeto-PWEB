@@ -77,12 +77,12 @@ busca.get('/buscaAutomatica/:userID', function (req, res) {
             resposta["dados"] = "Erro interno do servidor";
             res.json(resposta);
         } else {
-            connecton.query("SELECT dia, hora_inicio, hora_fim, id_usuario FROM t_horario_disponivel WHERE id_usuario=?", userID, function (err, rows, fields) {
+            connecton.query("SELECT dia, hora_inicio, id_usuario FROM t_horario_disponivel WHERE id_usuario=?", userID, function (err, rows, fields) {
                 if (err) {
                     throw err;
                 } else if (rows.length > 0) {
                     params = [rows[0]]
-                    var sql = "SELECT * FROM t_usuario_jogo WHERE dia=? AND hora_inicio >= ? AND hora_fim <=? AND id_usuario !=?";
+                    var sql = "SELECT * FROM t_horario_disponivel WHERE DIA=? and CAST(? AS time) BETWEEN hora_inicio AND hora_fim and id_usuario !=? ";
                     connection.query(sql, params, function (err, rows, result) {
                         console.log(rows);
                         if (err)
