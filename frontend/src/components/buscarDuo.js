@@ -4,7 +4,7 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-export default class TelaJogar extends Component {
+export default class BuscarDuo extends Component {
     constructor(props) {
         super(props);
         this.state = {

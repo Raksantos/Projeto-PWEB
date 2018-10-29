@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import logo from './img/duo_simbolo.png';
 import Cookies from 'universal-cookie';
-import TelaJogar from "./buscarDuo";
+import BuscarDuo from "./buscarDuo";
 import Navbar from "./navbar";
 import Footer from "./footer";
 const cookies = new Cookies();
@@ -38,7 +38,7 @@ export default class Jogar extends Component {
         <div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
           <div className="col-md-5 p-lg-5 mx-auto my-5">
             <h1 className="display-4 font-weight-normal">Buscar Duo</h1> <br/>  
-            <TelaJogar />
+            <BuscarDuo />
           </div>
           <div className="product-device shadow-sm d-none d-md-block"></div>
           <div className="product-device product-device-2 shadow-sm d-none d-md-block"></div>
