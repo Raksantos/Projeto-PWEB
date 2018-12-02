@@ -15,7 +15,6 @@ export default class Rotas extends Component {
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/cadastro" component={Cadastro} />
-                    <Route exact path="/login" component={Login} />
                     <Route exact path="/perfil" component={Perfil} />
                     <Route exact path="/duo" component={Duo} />
                     <Route exact path="/jogar" component={Jogar} />
@@ -24,6 +23,4 @@ export default class Rotas extends Component {
             </Router>
             );
     }
-
-
 }

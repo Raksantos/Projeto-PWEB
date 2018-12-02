@@ -76,6 +76,9 @@ export default class TelaLogin extends Component {
                             <div className="form-row justify-content-center">
                                 <a className="btn btn-sm btn-outline-danger" href="/" >Cancelar</a>
                             </div>
+                            <div className="form-row justify-content-center">
+                                <a className="text text-primary text-sm mt-2" href="cadastro" >Quero me cadastrar</a>
+                            </div>
                         </div>
                     </form>
                 </div>

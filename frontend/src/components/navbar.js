@@ -41,7 +41,7 @@ export default class Navbar extends React.Component {
             <ul className="navbar-nav ml-auto">
               {this.state.usuario ?
                 <div className="navbar-nav ml-auto">
-                  <li className="nav-item"><a className="nav-link py-2 d-none d-md-inline-block text-danger btn btn-dark" type="button" href="/">Inicio</a></li>
+                  <li className="nav-item"><a className="nav-link py-2 d-none d-md-inline-block text-danger btn btn-dark" type="button" href="/">Início</a></li>
                   <div className="dropdown btn btn-dark">
                     <img className="dropdown-toggle" src={perfilBusto} type="button" id="dropdownMenu2" data-toggle="dropdown"></img>
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
@@ -53,7 +53,7 @@ export default class Navbar extends React.Component {
                 </div>
                 :
                 <div className="navbar-nav ml-auto">
-                  <li className="nav-item"><a className="nav-link py-2 d-none d-md-inline-block text-danger btn btn-dark" type="button" href="/">Inicio</a></li>
+                  <li className="nav-item"><a className="nav-link py-2 d-none d-md-inline-block text-danger btn btn-dark" type="button" href="/">Início</a></li>
                   <div className="dropdown">
                     <img className="dropdown-toggle btn btn btn-dark" src={perfilBusto} type="button" id="dropdownMenu1" data-toggle="dropdown"></img>
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
