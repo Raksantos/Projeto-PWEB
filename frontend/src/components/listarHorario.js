@@ -51,11 +51,11 @@ export default class ListarHorario extends Component {
             <div>
                 {this.state.horario &&
                     <div>
-                        <h5 className="text-info">Horario de Atividade</h5>
+                        <h5 className="text-info">Horário de Atividade</h5>
                         <div className="row">
                             <div className="col-md-auto">
                                 <h6>Dia: {this.state.horario.dia}</h6>
-                                <h6>Hora de Inicio: {this.state.horario.hora_inicio}</h6>
+                                <h6>Hora de Início: {this.state.horario.hora_inicio}</h6>
                                 <h6>Hora Final: {this.state.horario.hora_fim}</h6>
                             </div>
                         </div>

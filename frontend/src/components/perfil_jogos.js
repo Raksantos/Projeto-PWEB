@@ -48,7 +48,7 @@ export default class PerfilJogos extends Component {
             <div>
                 {this.state.perfis.map(perfil =>
                     <div key={perfil.id_jogo}>
-                        <h5 className="text-info">Jogo: {perfil.jogo}</h5>
+                        <h5 className="text-info">{perfil.jogo}</h5>
                         <div className="row">
                             <div className="col-md-auto">
                                 <h6>Nick: {perfil.nickname}</h6>

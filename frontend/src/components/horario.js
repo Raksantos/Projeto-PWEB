@@ -52,8 +52,9 @@ export default class Horario extends Component {
 
             <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                    <div className="row justify-content-center">
-                        <select className="form-control" name="dia" onChange={this.handleChange}>
+                    <div className="row ml-1 mr-1">
+                        <label htmlFor="dia">Dia</label>
+                        <select className="form-control" name="dia" id="selectDia" onChange={this.handleChange}>
                             <option defaultValue>Selecione...</option>
                             <option value='1'>Domingo</option>
                             <option value='2'>Segunda</option>
@@ -64,12 +65,12 @@ export default class Horario extends Component {
                             <option value='7'>Sábado</option>
                         </select>
                     </div>
-                    <div className="row justify-content-center">
-                        <label className="">Horario de Inicio</label>
+                    <div className="row ml-1 mr-1">
+                        <label className="">Hora de Início</label>
                         <input className="form-control" type="time" name="horarioInicial" placeholder="Horario de Inicio" onChange={this.handleChange} />
                     </div>
-                    <div className="row justify-content-center">
-                        <label className="">Horario Final</label>
+                    <div className="row ml-1 mr-1">
+                        <label className="">Hora Final</label>
                         <input className="form-control" type="time" name="horarioFinal" placeholder="Horario Final" onChange={this.handleChange} />
                     </div>
                     <div className="row justify-content-center">

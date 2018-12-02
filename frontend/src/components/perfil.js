@@ -43,7 +43,9 @@ export default class TelaPerfil extends Component {
                     <div className="container-fluid">
                         <div className="row justify-content-center">
                             <div className="card m-3 border-light" style={{ width: '50rem' }}>
-                                <div className="card-header bg-dark text-light text-center">Perfil Pessoal</div>
+                                <div className="card-header bg-dark text-light text-center">
+                                    <h5>Perfil Pessoal</h5>
+                                </div>
                                 <div className="card-body">
                                     <div className="row">
                                         <div className="col">
@@ -72,19 +74,22 @@ export default class TelaPerfil extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="row justify-content-center">
                             <div className="card mb-3 border-light" style={{ width: '50rem' }}>
-                                <div className="card-header bg-dark text-light text-center">Perfil Jogos</div>
+                                <div className="card-header bg-dark text-light text-center"><h5>Jogos</h5></div>
                                 <div className="card-body">
                                     <PerfilJogos />
-                                    <FormCadastrarJogo />
-
                                 </div>
                             </div>
                             <div className="card mb-3 border-light" style={{ width: '50rem' }}>
-                                <div className="card-header bg-dark text-light text-center">Horario Disponível
+                                <div className="card-header bg-dark text-light text-center"><h5>Configurar Perfil em um Jogo</h5></div>
+                                <div className="card-body">
+                                    <FormCadastrarJogo />
+                                </div>
                             </div>
+                            <div className="card mb-3 border-light" style={{ width: '50rem' }}>
+                                <div className="card-header bg-dark text-light text-center">
+                                    <h5>Horário Favorito</h5>
+                                </div>
                                 <div className="card-body">
                                     <Horario />
                                 </div>
