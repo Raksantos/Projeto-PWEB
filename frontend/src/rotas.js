@@ -7,6 +7,7 @@ import Jogar from './components/jogar';
 import Login from './components/login';
 import Logout from './components/logout';
 import Perfil from './components/perfil';
+import PerfilPublico from './components/perfilPublico';
 
 export default class Rotas extends Component {
     render(){
@@ -19,6 +20,7 @@ export default class Rotas extends Component {
                     <Route exact path="/duo" component={Duo} />
                     <Route exact path="/jogar" component={Jogar} />
                     <Route path="/logout" component={Logout} />
+                    <Route path="/user/:id" component={PerfilPublico} />
                 </Switch>
             </Router>
             );
