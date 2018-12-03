@@ -32,12 +32,12 @@ export default class Navbar extends React.Component {
       return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <a className="navbar-brand" href="">
-            <img src={logo} className="img-fluid" style={{ width: '2rem', height: '3rem' }} alt="Simbolo_duo" />
+            <img src={logo} className="img-fluid" style={{ width: '10%', height: '10%' }} alt="Simbolo_duo" />
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div className="btn collapse navbar-collapse" id="navbarResponsive">
+          <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
               {this.state.usuario ?
                 <div className="navbar-nav ml-auto">

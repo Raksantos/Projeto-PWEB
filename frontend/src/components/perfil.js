@@ -39,10 +39,10 @@ export default class TelaPerfil extends Component {
         return (
             <div>
                 <Navbar />
-                <div className="content-wrapper">
+                <div className="content-wrapper bg-light">
                     <div className="container-fluid">
                         <div className="row justify-content-center">
-                            <div className="card m-3 border-light" style={{ width: '50rem' }}>
+                            <div className="card m-3 border-dark" style={{ width: '50rem' }}>
                                 <div className="card-header bg-dark text-light text-center">
                                     <h5>Perfil Pessoal</h5>
                                 </div>
@@ -74,19 +74,19 @@ export default class TelaPerfil extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="card mb-3 border-light" style={{ width: '50rem' }}>
+                            <div className="card mb-3 border-dark" style={{ width: '50rem' }}>
                                 <div className="card-header bg-dark text-light text-center"><h5>Jogos</h5></div>
                                 <div className="card-body">
                                     <PerfilJogos />
                                 </div>
                             </div>
-                            <div className="card mb-3 border-light" style={{ width: '50rem' }}>
+                            <div className="card mb-3 border-dark" style={{ width: '50rem' }}>
                                 <div className="card-header bg-dark text-light text-center"><h5>Configurar Perfil em um Jogo</h5></div>
                                 <div className="card-body">
                                     <FormCadastrarJogo />
                                 </div>
                             </div>
-                            <div className="card mb-3 border-light" style={{ width: '50rem' }}>
+                            <div className="card mb-3 border-dark" style={{ width: '50rem' }}>
                                 <div className="card-header bg-dark text-light text-center">
                                     <h5>Horário Favorito</h5>
                                 </div>

@@ -90,7 +90,7 @@ export default class TelaCadastro extends Component {
 
     render() {
         if (this.state.redirect === true) {
-            return <Redirect to="/login" />
+            return <Redirect to="/" />
         }
         return (
             <div className="content-wrapper">

@@ -31,19 +31,18 @@ export default class Footer extends React.Component {
   render() {
     if (!this.state.redirect) {
       return (
-        <footer className="container py-5">
+        <footer className="container py-2">
           <div className="row">
-            <div className="col-12 col-md">
-              <img src={logo} className="img-fluid" style={{ width: '10%' }} alt="Simbolo_duo" />
-              <small className="d-block mb-3 text-muted">&copy; 2018</small>
-            </div>
             <div className="col-6 col-md">
+              <img src={logo} className="img-fluid" style={{ width: '2rem' }} alt="Simbolo_duo" />
+              <small className="d-block mb-3 text-muted">&copy;Encontre seu Duo 2018</small>
+            </div>
+            {/*<div className="col-6 col-md">
               <h5>Conteúdo</h5>
               <ul className="list-unstyled text-small">
                 <li><a className="text-muted" href="aleatorio">Pessoas aleatórias</a></li>
                 <li><a className="text-muted" href="top100">TOP 100</a></li>
               </ul>
-
             </div>
             <div className="col-6 col-md">
               <ul className="list-unstyled text-small">
@@ -51,7 +50,7 @@ export default class Footer extends React.Component {
                 <li><a className="text-muted" href="jogadas">JOGADAS INÉDITAS</a></li>
                 <li><a className="text-muted" href="/sobre">Sobre</a></li>
               </ul>
-            </div>
+                </div> */}
             <div className="col-6 col-md">
               <h5>Equipe</h5>
               <ul className="list-unstyled text-small">
