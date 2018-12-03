@@ -101,6 +101,38 @@ users.post('/logar', function (req, res) {
     });
 });
 
+users.get('/perfil/:userID', function(req, res){
+    
+    var resposta={};
+    const userID = req.params.userID;
+
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro Interno do Servidor";
+            res.json(resposta);
+        } else {
+            connection.query('SELECT nome AS nickname, id AS id_usuario, descricao, email FROM t_usuario WHERE id = ?', userID, function (err, rows, fields) {
+                if (err) {
+                    resposta["erro"] = 1;
+                    resposta["dados"] = "Erro SQL";
+                    res.json(resposta);
+                } else {
+                    if (rows.length > 0) {
+                        resposta["erro"] = 0;
+                        resposta["dados"] = rows[0];
+                        res.json(resposta);
+                    } else {
+                        resposta["erro"] = 1;
+                        resposta["dados"] = "Nenhum dado encontrado";
+                        res.json(resposta);
+                    }
+                }
+            });
+            connection.release();
+        }
+    });
+});
 
 //  Middleware para validar o token (JWT).
 //  Requisições antes daqui não precisam de token;
@@ -384,13 +416,13 @@ users.get('/perfilJogo/:userID/:jogoID', function (req, res) {
                     var sql;
                     if (e.id_mapa != null) {
                         params2 = [userID, e.id_jogo, e.id_jogo, e.id_rank, e.id_funcao, e.id_mapa];
-                        sql = 'SELECT f.nome AS funcao, j.nome AS jogo, r.nome AS rank, m.nome AS mapa, u.nickname ';
+                        sql = 'SELECT f.nome AS funcao, j.nome AS jogo, r.nome AS rank, r.id AS id_rank, m.nome AS mapa, u.nickname ';
                         sql += 'FROM t_funcao f, t_jogo j, t_rank r, t_mapa m, t_usuario_jogo u ';
                         sql += 'WHERE u.id_usuario=? AND u.id_jogo=? AND j.id=? AND r.id=? AND f.id=? AND m.id=?';
                     }
                     else {
                         params2 = [userID, e.id_jogo, e.id_jogo, e.id_rank, e.id_funcao];
-                        sql = 'SELECT f.nome AS funcao, j.nome AS jogo, r.nome AS rank, u.nickname ';
+                        sql = 'SELECT f.nome AS funcao, j.nome AS jogo, r.nome AS rank, r.id AS id_rank, u.nickname ';
                         sql += 'FROM t_funcao f, t_jogo j, t_rank r, t_usuario_jogo u ';
                         sql += 'WHERE u.id_usuario=? AND u.id_jogo=? AND j.id=? AND r.id=? AND f.id=?';
                     }
