@@ -6,7 +6,7 @@ import ResultadoBusca from './resultadoBusca';
 
 const cookies = new Cookies();
 
-export default class BuscarDuo extends Component {
+export default class BuscarDuoManual extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -100,9 +100,9 @@ export default class BuscarDuo extends Component {
         if (this.state.selecionado === false) {
             return (
                 <div>
-                    <label htmlFor="selectJogo" className="">Informe o jogo:</label>
+                    <h6>Busca Manual</h6>
                     <select className="form-control" id="selectJogo" onChange={this.handleSelect}>
-                        <option defaultValue hidden='true'>Selecione...</option>
+                        <option defaultValue hidden='true'>Selecione o jogo...</option>
                         {this.state.jogos.map(jogo =>
                             <option key={jogo.id} value={jogo.id}>{jogo.nome}</option>
                         )}

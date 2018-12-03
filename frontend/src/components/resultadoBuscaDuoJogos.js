@@ -5,12 +5,12 @@ import $ from 'jquery';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-export default class ResultadoBusca extends Component{
+export default class ResultadoBuscaDuoJogos extends Component{
 
     render(){
         return(
             <div className="card m-3 border-dark">
-                <div className="card-header border-dark text-dark text-center">Duos Encontrados</div>
+                <div className="card-header border-dark text-dark text-center">Duos com jogos e ranks semelhantes</div>
                 <div className="card-body">
                     {this.props.duos[0] ?
                         <div>
