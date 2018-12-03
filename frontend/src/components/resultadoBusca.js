@@ -18,7 +18,7 @@ export default class ResultadoBusca extends Component{
                                 <div key={duo.id_usuario}>
                                     {duo.id_usuario ?
                                         <div>
-                                            <p className="text-dark">{duo.nickname}</p>
+                                            <a className="text-dark" href="http://localhost:3000/user/${duo.id_usuario}">{duo.nickname}</a>
                                             <hr className="mtb-2"></hr>
                                         </div>
                                     :

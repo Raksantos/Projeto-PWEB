@@ -80,7 +80,8 @@ busca.get('/buscaAutomaticaHorario/:userID', function (req, res) {
                 if (err) {
                     throw err;
                 } else if (rows.length > 0) {
-                    var params = [rows[0].hora_inicio, rows[0].hora_fim, rows[0].hora_inicio, rows[0].hora_fim, rows[0].dia, rows[0].id_usuario];
+                    var t="00:00:00"
+                    var params = [t, rows[0].hora_fim, t, rows[0].hora_fim, rows[0].dia, rows[0].id_usuario];
                     const sql = "SELECT id_usuario FROM t_horario_disponivel WHERE ((hora_fim BETWEEN ? AND ?) OR (hora_inicio BETWEEN ? AND ?)) AND DIA=? AND id_usuario != ?";
                     connection.query(sql, params, function (err, rows, result) {
                         console.log(rows);

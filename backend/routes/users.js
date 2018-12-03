@@ -101,6 +101,97 @@ users.post('/logar', function (req, res) {
     });
 });
 
+users.get('/publicHorario/:userID', function (req, res) {
+    var userID = req.params.userID;
+
+    var resposta = {
+        "erro": 1,
+        "dados": ""
+    };
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta['erro'] = 1;
+            resposta['dados'] = "Erro Interno do Servidor";
+            res.json(resposta);
+        } else {
+            connection.query('SELECT * FROM t_horario_disponivel WHERE id_usuario=?', userID, function (err, rows, fields) {
+                if (err) {
+                    throw (err);
+                } else if (rows.length > 0){
+                    console.log(rows)
+                    resposta['erro']=0;
+                    resposta['dados']=rows;
+                    res.json(resposta);
+
+                } else {
+                    resposta['erro']=1;
+                    resposta['dados']="Nenhum dado encontrado";
+                    res.json(resposta);
+                }
+            })
+        }
+    })
+})
+
+users.get('/publicJogo/:userID', function (req, res) {
+    var userID = req.params.userID;
+    console.log(userID);
+
+    var resposta = {
+        "erro": 1,
+        "dados": ""
+    };
+    var aux = [];
+    database.connection.getConnection(function (err, connection) {
+        if (err) {
+            resposta["erro"] = 1;
+            resposta["dados"] = "Erro interno do servidor";
+            res.json(resposta);
+        } else {
+            connection.query('SELECT * FROM t_usuario_jogo WHERE id_usuario = ?', userID, function (err, rows, fields) {
+                if (err)
+                    throw err;
+                else if (rows.length > 0) {
+                    console.log(rows);
+                    for (var i = 0, len = rows.length; i < len; i++) {
+                        var e = rows[i];
+                        var params;
+                        var sql;
+                        if (e.id_mapa != null) {
+                            params = [userID, e.id_jogo, e.id_jogo, e.id_rank, e.id_funcao, e.id_mapa];
+                            sql = 'SELECT f.nome AS funcao, j.nome AS jogo, r.nome AS rank, m.nome AS mapa, u.nickname ';
+                            sql += 'FROM t_funcao f, t_jogo j, t_rank r, t_mapa m, t_usuario_jogo u ';
+                            sql += 'WHERE u.id_usuario=? AND u.id_jogo=? AND j.id=? AND r.id=? AND f.id=? AND m.id=?';
+                        }
+                        else {
+                            params = [userID, e.id_jogo, e.id_jogo, e.id_rank, e.id_funcao];
+                            sql = 'SELECT f.nome AS funcao, j.nome AS jogo, r.nome AS rank, u.nickname ';
+                            sql += 'FROM t_funcao f, t_jogo j, t_rank r, t_usuario_jogo u ';
+                            sql += 'WHERE u.id_usuario=? AND u.id_jogo=? AND j.id=? AND r.id=? AND f.id=?';
+                        }
+                        connection.query(sql, params, function (err, result) {
+                            if (err)
+                                throw err;
+                            else {
+                                console.log(result);
+                                aux.push(result);
+                            }
+                        });
+                    }
+                    resposta["erro"] = 0;
+                    resposta["dados"] = rows;
+                    res.json(resposta);
+                } else {
+                    resposta["dados"] = "Nenhum dado encontrado";
+                    res.json(resposta);
+                }
+            });
+            connection.release();
+        }
+    })
+});
+
+
 users.get('/perfil/:userID', function(req, res){
     
     var resposta={};
