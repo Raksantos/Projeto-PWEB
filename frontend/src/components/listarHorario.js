@@ -8,13 +8,12 @@ export default class ListarHorario extends Component {
         super(props);
 
         this.state = {
-            horario: null,
-            usuario: this.props.usuario
+            horario: null
         }
     }
     componentDidMount() {
         const user = cookies.get('usuario');
-        if (user != undefined) {
+        if (user != null) {
             this.setState({ usuario: user })
             axios.get('http://localhost:8000/users/listarHorario/' + user.id, { headers: { 'token': user.token } })
                 .then(res => {
@@ -44,8 +43,11 @@ export default class ListarHorario extends Component {
     }
 
     render() {
-        console.log(this.state.usuario)
-        console.log(this.state.horario)
+        if(this.state.horario != null){
+            var dia = this.state.horario.dia;
+            var inicio = this.state.horario.hora_inicio;
+            var fim = this.state.horario.hora_fim;
+        }
         return (
 
             <div>
@@ -54,9 +56,9 @@ export default class ListarHorario extends Component {
                         <h5 className="text-info">Horário de Atividade</h5>
                         <div className="row">
                             <div className="col-md-auto">
-                                <h6>Dia: {this.state.horario.dia}</h6>
-                                <h6>Hora de Início: {this.state.horario.hora_inicio}</h6>
-                                <h6>Hora Final: {this.state.horario.hora_fim}</h6>
+                                <h6>Dia: {dia}</h6>
+                                <h6>Hora de Início: {inicio}</h6>
+                                <h6>Hora Final: {fim}</h6>
                             </div>
                         </div>
                     </div>

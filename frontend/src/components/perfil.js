@@ -18,7 +18,7 @@ const cookies = new Cookies();
 export default class TelaPerfil extends Component {
     constructor(props) {
         super(props);
-        this.state = { redirect: false, usuario: '', image: img };
+        this.state = { redirect: false, usuario: null, image: img };
     }
 
     componentDidMount() {
@@ -30,11 +30,13 @@ export default class TelaPerfil extends Component {
     }
 
     render() {
-        var nome = this.state.usuario.nome;
-        var email = this.state.usuario.email;
-        var descricao = this.state.usuario.descricao;
-        var usuario = this.state.usuario.id;
-        var token = this.state.usuario.token;
+        if (this.state.usuario != null) {
+            var nome = this.state.usuario.nome;
+            var email = this.state.usuario.email;
+            var descricao = this.state.usuario.descricao;
+            var usuario = this.state.usuario.id;
+            var token = this.state.usuario.token;
+        }
 
         return (
             <div>
@@ -48,28 +50,26 @@ export default class TelaPerfil extends Component {
                                 </div>
                                 <div className="card-body">
                                     <div className="row">
+                                        <div className="col-md-auto">
+                                            {this.state.image == img ?
+                                                <div style={{ width: '100px', height: '100px' }}>
+                                                    <div className="row justify-content-md-center"><img width="50%" height="50%" className="rounded-circle" src={img} /></div>
+                                                    <div className="row justify-content-md-center"><a className="btn btn-dark btn-sm text-light">Upload Image</a></div>
+                                                </div>
+                                                :
+                                                <div>
+                                                    <LoadingIcon />
+                                                    <a className="btn btn-sm btn-dark text-light">Upload Image</a>
+                                                </div>
+                                            }
+                                        </div>
                                         <div className="col">
                                             <div className="row"><label htmlFor="userNome">Nome: {nome}</label></div>
                                             <div className="row"><label htmlFor="userEmail">Email: {email}</label></div>
                                             <div className="row"><label htmlFor="userDescription">Descrição: {descricao}</label></div>
                                         </div>
                                         <div className="col">
-                                        <ListarHorario />
-                                        </div>
-                                        <div className="col-md-auto">
-                                            {this.state.image == img ?
-                                                <div style={{width: '100px', height: '100px'}}>
-                                                    <div className="row justify-content-md-center"><img width="50%" height="50%" className="rounded-circle" src={img} /></div>
-                                                    <div className="row justify-content-md-center"><a className="btn btn-dark btn-sm text-danger" type="button">Upload Image</a></div>
-                                                </div>
-
-                                                :
-                                                <div>
-                                                    <LoadingIcon />
-                                                    <a className="btn btn-dark btn-sm text-danger" type="button">Upload Image</a>
-                                                </div>
-                                            }
-
+                                            <ListarHorario />
                                         </div>
                                     </div>
                                 </div>

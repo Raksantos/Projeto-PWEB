@@ -21,8 +21,10 @@ export default class Horario extends Component {
     }
     componentDidMount(){
         const user = cookies.get('usuario');
-        this.setState({usuario: user.id})
-        this.setState({token: user.token})
+        if(user != null && user != undefined){
+            this.setState({usuario: user.id});
+            this.setState({token: user.token});
+        }
     }
 
     handleChange(event) {

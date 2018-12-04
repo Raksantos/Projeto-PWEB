@@ -3,39 +3,39 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-export default class ListarHorario extends Component {
+export default class PublicHorario extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            horario: null,
-            usuario: this.props.usuario
+            horario: null
         }
     }
     componentDidMount() {
-        const user = cookies.get('usuario');
-        if (user != undefined) {
-            this.setState({ usuario: user })
-            axios.get('http://localhost:8000/users/publicHorario/' + user.id)
+        const id = this.props.userID;
+        if (id != undefined) {
+            axios.get('http://localhost:8000/users/publicHorario/' + id)
                 .then(res => {
-                    var resp = res.data.dados;
-                    var retorno = JSON.parse(JSON.stringify(resp).split('[').join('').split(']').join(''));
-                    if (retorno.dia === 1)
-                        retorno.dia = "Domingo"
-                    if (retorno.dia === 2)
-                        retorno.dia = "Segunda"
-                    if (retorno.dia === 3)
-                        retorno.dia = "Terça"
-                    if (retorno.dia === 4)
-                        retorno.dia = "Quarta"
-                    if (retorno.dia === 5)
-                        retorno.dia = "Quinta"
-                    if (retorno.dia === 6)
-                        retorno.dia = "Sexta"
-                    if (retorno.dia === 7)
-                        retorno.dia = "Sábado"
-                    this.setState({ horario: retorno })
-
+                    if (res.data.erro != 1) {
+                        var resp = res.data.dados;
+                        var retorno = JSON.parse(JSON.stringify(resp).split('[').join('').split(']').join(''));
+                        if (retorno.dia === 1)
+                            retorno.dia = "Domingo"
+                        if (retorno.dia === 2)
+                            retorno.dia = "Segunda"
+                        if (retorno.dia === 3)
+                            retorno.dia = "Terça"
+                        if (retorno.dia === 4)
+                            retorno.dia = "Quarta"
+                        if (retorno.dia === 5)
+                            retorno.dia = "Quinta"
+                        if (retorno.dia === 6)
+                            retorno.dia = "Sexta"
+                        if (retorno.dia === 7)
+                            retorno.dia = "Sábado"
+                        this.setState({ horario: retorno });
+                    } else
+                        this.setState({ horario: null });
 
                 }).catch(error => {
                     console.log(error);
@@ -49,7 +49,7 @@ export default class ListarHorario extends Component {
         return (
 
             <div>
-                {this.state.horario &&
+                {this.state.horario ?
                     <div>
                         <h5 className="text-info">Horário de Atividade</h5>
                         <div className="row">
@@ -60,6 +60,8 @@ export default class ListarHorario extends Component {
                             </div>
                         </div>
                     </div>
+                    :
+                    <span></span>
                 }
             </div>
         )
