@@ -39,29 +39,28 @@ export default class Navbar extends React.Component {
             <span class="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
-            <ul className="navbar-nav ml-auto">
               {this.state.usuario ?
-                <div className="navbar-nav ml-auto">
-                  <div className="dropdown btn btn-dark">
-                    <img className="dropdown-toggle" src={perfilBusto} id="dropdownMenu2" data-toggle="dropdown"></img>
-                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                      <a className="dropdown-item text-info btn btn-dark" href="/perfil">Perfil</a>
-                      <a className="dropdown-item text-warning btn btn-dark" href="/jogar">Jogar</a>
-                      <a className="dropdown-item btn btn-dark" href="/logout">Sair</a>
-                    </div>
-                  </div>
-                </div>
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <a className="nav-link text-info btn btn-dark" href="/perfil">Perfil</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link text-warning btn btn-dark" href="/jogar">Jogar</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link btn btn-dark" href="/logout">Sair</a>
+                  </li>
+                </ul>
                 :
-                <div className="navbar-nav ml-auto">
-                  <div className="dropdown">
-                    <span className="nav-link py-2 d-none d-md-inline-block text-light btn btn-dark" id="dropdownMenu1" data-toggle="dropdown">Login/Cadastro</span>
-                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item dropdown">
+                    <span className="nav-link py-2 text-light btn btn-dark" id="dropdownMenu1" data-toggle="dropdown">Login/Cadastro</span>
+                    <div className="dropdown-menu dropdown-menu-right">
                       <TelaLogin />
                     </div>
-                  </div>
-                </div>
+                  </li>
+                </ul>
               }
-            </ul>
           </div>
         </nav>
       )
