@@ -31,31 +31,30 @@ export default class Navbar extends React.Component {
     if (!this.state.redirect) {
       return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a className="navbar-brand" href="">
-            <img src={logo} className="img-fluid" style={{ width: '10%', height: '10%' }} alt="Simbolo_duo" />
+          <a className="navbar-brand" href="/">
+            <img src={logo} className="img-fluid" style={{ width: '6%', height: '6%' }} alt="Simbolo_duo" />
+            <span className="text-light">  Encontre seu Duo</span>
           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarResponsive">
             <ul className="navbar-nav ml-auto">
               {this.state.usuario ?
                 <div className="navbar-nav ml-auto">
-                  <li className="nav-item"><a className="nav-link py-2 d-none d-md-inline-block text-danger btn btn-dark" type="button" href="/">Início</a></li>
                   <div className="dropdown btn btn-dark">
-                    <img className="dropdown-toggle" src={perfilBusto} type="button" id="dropdownMenu2" data-toggle="dropdown"></img>
+                    <img className="dropdown-toggle" src={perfilBusto} id="dropdownMenu2" data-toggle="dropdown"></img>
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-                      <a className="dropdown-item text-info btn btn-dark" type="button" href="/perfil">Perfil</a>
-                      <a className="dropdown-item text-warning btn btn-dark" type="button" href="/jogar">Jogar</a>
-                      <a className="dropdown-item btn btn-dark" type="button" href="/logout">Sair</a>
+                      <a className="dropdown-item text-info btn btn-dark" href="/perfil">Perfil</a>
+                      <a className="dropdown-item text-warning btn btn-dark" href="/jogar">Jogar</a>
+                      <a className="dropdown-item btn btn-dark" href="/logout">Sair</a>
                     </div>
                   </div>
                 </div>
                 :
                 <div className="navbar-nav ml-auto">
-                  <li className="nav-item"><a className="nav-link py-2 d-none d-md-inline-block text-danger btn btn-dark" type="button" href="/">Início</a></li>
                   <div className="dropdown">
-                    <img className="dropdown-toggle btn btn btn-dark" src={perfilBusto} type="button" id="dropdownMenu1" data-toggle="dropdown"></img>
+                    <span className="nav-link py-2 d-none d-md-inline-block text-light btn btn-dark" id="dropdownMenu1" data-toggle="dropdown">Login/Cadastro</span>
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
                       <TelaLogin />
                     </div>

@@ -31,7 +31,7 @@ export default class Footer extends React.Component {
   render() {
     if (!this.state.redirect) {
       return (
-        <footer className="container py-2">
+        <footer className="container py-2 mt-3">
           <div className="row">
             <div className="col-6 col-md">
               <img src={logo} className="img-fluid" style={{ width: '2rem' }} alt="Simbolo_duo" />
@@ -52,7 +52,7 @@ export default class Footer extends React.Component {
               </ul>
                 </div> */}
             <div className="col-6 col-md">
-              <h5>Equipe</h5>
+              <h5 className="text-muted">Equipe</h5>
               <ul className="list-unstyled text-small">
                 <li><a className="text-muted" target="_blank" rel="noopener" href="https://github.com/Raksantos/Projeto-PWEB">Conheça os programadores</a></li>
                 <div className="row">
